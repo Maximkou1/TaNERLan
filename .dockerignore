@@ -1,0 +1,22 @@
+# в образ идут только код (tanerlan, augmentation), pyproject/uv.lock и API.md; модели — volume
+.git
+.venv
+__pycache__
+*.pyc
+*.ipynb
+*.html
+.env
+artifacts
+data
+evaluation
+baseline
+cleaning
+hyperparameters
+scripts
+configs
+tmp_litserver.txt
+client.py
+docker-compose*.yml
+augmentation/data
+augmentation/*.tsv
+models

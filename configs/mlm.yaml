@@ -1,0 +1,89 @@
+experiment_name: MLMModernBertUZPreTraining
+
+model_name_or_path: /workspace/uzbeki/artifacts/modern-bert-uz
+
+data:
+  tokenizer_name_or_path: /workspace/uzbeki/artifacts/modern-bert-uz
+  batch_size: 2
+  num_workers: 14
+  seed: 1337
+  mlm_probability: 0.15
+  mask_replace_prob: 0.8
+  random_replace_prob: 0.1
+  pad_to_multiple_of: 8
+  dataset_configs:
+  - lang: uz-lat
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/uz-latn
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - lang: uz-cyr
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/uz-cyrl-translit
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - lang: uz-cyr
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/uz-cyrl-books
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - lang: ru
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/ru-wiki
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - lang: ru
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/ru-news
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - lang: en
+    name_or_path: /workspace/uzbeki/artifacts/mlm-data/en-wiki
+    text_colname: text
+    train_split_name: train
+    val_split_name: validation
+  - uz_lat_ratio: 0.45
+    uz_cyr_ratio: 0.20
+    ru_ratio: 0.25
+    en_ratio: 0.10
+    total_samples: 300000
+
+hyperparams:
+  grad_clip_val: 2.0
+  optimizer:
+    type: AdamW
+    betas: [ 0.9, 0.98 ]
+
+  weight_decay:
+    base_value: 0.001
+
+  embeddings_lr:
+    scheduler_type: cosine
+    warmup_ratio: 0.05
+    warmup_value: 1e-6
+    base_value: 5e-4
+    final_value: 5e-5
+
+  backbone_lr:
+    scheduler_type: cosine
+    freeze_ratio: 0.12
+    warmup_ratio: 0.05
+    warmup_value: 1e-6
+    base_value: 5e-5
+    final_value: 5e-6
+
+trainer:
+  accelerator: "cuda"
+  devices: [ 0, 1 ]
+  max_epochs: 3
+  strategy:
+    type: "ddp"
+  val_check_interval: 0.1
+  precision: bf16-mixed
+  accumulate_grad_batches: 7
+
+checkpointing:
+  save_top_k: 3
+  mode: "min"
+  monitor: "val_loss"
+  filename: "|{epoch}|-|{step}|-|{val_loss:.5f}|"

@@ -1,0 +1,80 @@
+{
+  "sources": {
+    "gold": {
+      "lang": "uz",
+      "sentences": 4176,
+      "mentions": 5491,
+      "added": {
+        "NAME": 907,
+        "GEO": 691,
+        "ORG": 880
+      }
+    },
+    "kaggle": {
+      "lang": "uz",
+      "sentences": 3043,
+      "mentions": 6003,
+      "added": {
+        "NAME": 254,
+        "GEO": 49,
+        "ORG": 154
+      }
+    },
+    "wikiann_uz": {
+      "lang": "uz",
+      "sentences": 3000,
+      "mentions": 2048,
+      "added": {
+        "NAME": 269,
+        "GEO": 1505,
+        "ORG": 0
+      }
+    },
+    "wikineural_ru": {
+      "lang": "ru",
+      "sentences": 92320,
+      "mentions": 54184,
+      "added": {
+        "NAME": 3608,
+        "GEO": 6099,
+        "ORG": 822
+      }
+    },
+    "wikineural_en": {
+      "lang": "en",
+      "sentences": 92720,
+      "mentions": 118861,
+      "added": {
+        "NAME": 5132,
+        "GEO": 4120,
+        "ORG": 2499
+      }
+    }
+  },
+  "pool": {
+    "NAME": {
+      "total": 10170,
+      "en-lat": 5132,
+      "ru-cyr": 1808,
+      "ru-lat": 1800,
+      "uz-cyr": 698,
+      "uz-lat": 732
+    },
+    "GEO": {
+      "total": 12464,
+      "en-lat": 4120,
+      "ru-cyr": 3059,
+      "ru-lat": 3040,
+      "uz-cyr": 985,
+      "uz-lat": 1260
+    },
+    "ORG": {
+      "total": 4355,
+      "en-lat": 2499,
+      "ru-cyr": 411,
+      "ru-lat": 411,
+      "uz-cyr": 448,
+      "uz-lat": 586
+    }
+  }
+}

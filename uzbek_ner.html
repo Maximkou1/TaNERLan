@@ -1,0 +1,944 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.C12lZ9DL.js","assets":"assets.8Gk803W0.js","comments":"comments.vw5vQdGA.js","db":"db.h-3sndFg.js","downloads":"downloads.Cqv48mdo.js","embed":"embed.eqL6deQM.js","endpoints":"endpoints.CfzSv5nM.js","mcp":"mcp.Bvma3qD7.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.VSdFwTE9.js","sample":"sample.BW2Uysoh.js","self":"artifact.C12lZ9DL.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.DSB5x63f.js","comments":"_comments.lsIZQbAK.js","translate":"_translate.5HCW4BJh.js"}</script><script>(function(){"use strict";var te=["light","dark","system"],re=/^[A-Za-z0-9_-]{1,64}$/,$=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ne=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function oe(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||ne.has(t)}var Be="http://www.w3.org/1999/xhtml",se="http://www.w3.org/2000/svg",ae=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ie=new Set(["script","style"]);function ce(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!ae.has(t):e.namespaceURI===se?!ie.has(t):!1}function M(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function le(e,t){const r=e.length,n=t.length;let s=0;for(;s<r&&s<n&&M(e.charCodeAt(s),t.charCodeAt(s));)s++;let o=0;for(;o<r-s&&o<n-s&&M(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:s,s:o}}function ue(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,s=n.length,o=t.length,{p:i,s:c}=le(n,t);i===s&&c===0&&s===o||r.replaceData(i,s-i-c,t.slice(i,o-c));const h=r.data,p=e.ownerDocument.getSelection?.()??null,w=p!==null&&p.rangeCount>0&&(p.anchorNode===r||p.focusNode===r)?{anchor:p.anchorNode,anchorOffset:p.anchorOffset,focus:p.focusNode,focusOffset:p.focusOffset}:null;let m=-1,g=-1;for(let f=0;f<h.length&&f<t.length;f++){const v=h.charCodeAt(f),b=t.charCodeAt(f);v!==b&&M(v,b)&&(m<0&&(m=f),g=f)}const a=m>=0;if(a&&r.replaceData(m,g-m+1,t.slice(m,g+1)),a&&w!==null&&w.anchor!==null&&w.focus!==null)try{p.setBaseAndExtent(w.anchor,w.anchorOffset,w.focus,w.focusOffset)}catch{}}var fe=new Set(["html","head","body","frameset"]);function de(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&fe.has(e.localName)}function pe(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!re.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!$.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!$.test(r))return!1}return!0}function me(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let s=0;s<n.length;s++)if(!t(n[s]))return!1;return!0}function he(e){return e===null||typeof e!="object"?!1:me(e.__frame_patch,pe)}function _e(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function ve(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ye(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&te.includes(r)}var A=/^[\w.-]+\.js$/;function we(e,t,r){return r?"inert":typeof t=="string"&&A.test(t)?e?[t]:"inert":e?"inert":"framed"}function ge(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function be(){return{post:()=>{},on:()=>()=>{}}}var j="__frame_scroll",Ee=150,Ae=310,Se=160,Te=3e4;function ke(){let e=0,t=!1,r=!1,n=!1,s=0,o=null;const i=l=>{try{sessionStorage.setItem(j,JSON.stringify({y:l}))}catch{}},c=()=>{if(clearTimeout(e),o===null)return;const l=o;o=null,i(l)},h=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(c,Ee)};try{addEventListener("scroll",h,{passive:!0}),addEventListener("pagehide",c)}catch{}const p=()=>{let l;try{l=sessionStorage.getItem(j)}catch{return null}if(l===null)return null;let _;try{_=JSON.parse(l)}catch{_=null}const d=_?.y;if(!(typeof d=="number"&&Number.isFinite(d)&&d>=0)){try{sessionStorage.removeItem(j)}catch{}return null}return d};let w=!1;const m=l=>{try{const _=scrollY;scrollTo({top:l,left:0,behavior:"instant"}),s=l,n=!0,clearTimeout(e),o=null,i(l);const d=scrollY;d!==_&&(t=!0),d!==l&&!w&&(w=!0,addEventListener("load",()=>{try{if(scrollY===d){const T=p();m(T!==null?T:s)}}catch{}},{once:!0}))}catch{}},g=()=>{try{return!!location.hash}catch{return!0}};let a=!1;const f=()=>{try{if(a||innerWidth>Ae||innerHeight>Se)return;a=!0;const l=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-l>Te||r||g())return;const d=p();m(d!==null?d:s)};addEventListener("resize",_)}catch{}};let v=!1,b=!1;return{restore(){if(v||(v=!0,g()))return;const l=p();l!==null&&(m(l),f())},promoted(){if(b||(b=!0,g()))return;const l=p();l!==null?(m(l),f()):n&&m(s)}}}function Re(e,t,r,n){let s=null;try{s=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:h=>h})??null}catch{}const o=window.Worker,i=o?.prototype,c=Object.freeze({Worker:o,workerOn:i?.addEventListener,workerPost:i?.postMessage,workerTerminate:i?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:s,origins:t});r(e).then(h=>h?.bootTopLevel?h.bootTopLevel(c,n):n.settle()).catch(()=>n.settle())}var De="modulepreload",Ie=function(e){return"/"+e},Ue={},Le=function(t,r,n){let s=Promise.resolve();function o(i){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=i,window.dispatchEvent(c),!c.defaultPrevented)throw i}return s.then(i=>{for(const c of i||[])c.status==="rejected"&&o(c.reason);return t().catch(o)})},Oe=window===top,q=Object.getOwnPropertyDescriptor(window,"claude"),k=we(Oe,window.__FRAME_PREAMBLE?.topLevel,q?.writable===!1),N=typeof k=="object"&&k[0],y=N?be():ge();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let s=0;s<r.length;s++){const o=r[s];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&k==="framed")try{y.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Pe=1e4,Y=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function X(e){for(const t of Y)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),B=window.__FRAME_PREAMBLE?.transforms,D=window.__FRAME_PREAMBLE?.comments,I=window.__FRAME_PREAMBLE?.translate;function S(e){return Le(()=>import("/_runtime/"+e),void 0)}function G(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:x,hooks:O,pipe:()=>({wrap:(r,n)=>(...s)=>{try{return n(...s)}catch(o){return Promise.reject(o)}}})}}var L=null,E=null;function V(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var U=!1,O={editBefore:null,edit:null};function Ce(e,t,r=!1){const n=[];let s;if(r)try{O.editBefore?.(e)}catch{}for(const o of e.elements){const i=document.querySelector(`[data-id="${o.target}"]`);if(!i){s=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(c=>!oe(c))){s=o.target;break}if(o.text!==void 0&&(!ce(i)||de(i))){s=o.target;break}for(const[c,h]of Object.entries(o.attrsSet??{}))if(!J(i,c)){try{i.setAttribute(c,h)}catch{}Z(i,c,h)}for(const c of o.attrsRemoved??[])J(i,c)||(i.removeAttribute(c),Z(i,c,null));typeof o.text=="string"&&ue(i,o.text),n.push(o.target)}if(r)try{O.edit?.(e.seq,n,s)}catch{}if(s!==void 0){y.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function Z(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function J(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Q(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,U=!0):U&&(delete t.dataset.theme,t.style.colorScheme="",U=!1)}var P=new Map;function Me(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function F(){for(const e of P.values())e.done||(e.nulled=!0,e.r(null))}var je=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),x=(e,t)=>{const r=P.get(e);if(!r||r.done){r?.nulled&&E&&y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},E);return}const n=typeof t=="function"?Object.setPrototypeOf(t,je):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ee(){const e=q?.value??{};V(window,"claude",e);for(const t of Object.keys(R)){if(e[t]!==void 0){V(e,t,e[t]);continue}P.set(t,Me())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(R,r))return Promise.resolve(null);const n=P.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(k==="framed"){const e=B&&A.test(B)?S(B).catch(()=>{}):Promise.resolve(void 0),t=a=>{if(a.type==="auxclick"&&a.button!==1)return;const f=a.target,v=f&&f.closest?f.closest("a[href],area[href]"):null;if(!v)return;const b=v.getAttribute("href");if(!b)return;let l;try{l=new URL(b,document.baseURI)}catch{return}if((l.protocol==="http:"||l.protocol==="https:")&&l.origin!==location.origin){a.preventDefault();const _=(v.getAttribute("target")??"").toLowerCase(),d=a.type==="auxclick"||a.metaKey||a.ctrlKey||a.shiftKey||a.altKey||!["","_self","_top","_parent"].includes(_);y.post({__frame_nav:!0,url:l.href,newTab:d},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=a=>{a.isTrusted&&(r.pointer=!0)},s=a=>{a.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0}),e.then(a=>{a?.wireNav&&(a.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",s,!0),a.wireEngagement?.(r))});let o=null;try{o=ke()}catch{}ee();let i=null,c=null,h=0;const p=y.on((a,f)=>{X(f)&&_e(a)&&(i=a.__frame_init,E=f,p(),clearTimeout(h),c?.())});y.post({__frame_connect:!0},"*");const w=new Promise(a=>{c=a,h=setTimeout(()=>{p(),a()},Pe)}),m=document.readyState==="loading"?new Promise(a=>document.addEventListener("DOMContentLoaded",()=>a(),{once:!0})):Promise.resolve();m.then(()=>{try{o?.restore()}catch{}});const g={cb:null};y.on((a,f)=>{if(X(f)&&ve(a)){try{o?.promoted()}catch{}g.cb?.()}}),w.then(async()=>{if(!i||!E){F();return}Q(i.theme);const a=E;let f=!1,v=!1;y.on((u,z,C)=>{if(z!==a)return;ye(u)&&Q(u.__frame_theme.theme),he(u)&&Ce(u.__frame_patch,a,C);const H=u?.__fc_mode;H&&typeof H=="object"&&!f&&D&&A.test(D)&&(f=!0,S(D).then(K=>K.install?.(a,H.on===!0)).catch(()=>{}));const W=u?.__ft_cmd;W&&typeof W=="object"&&!v&&I&&A.test(I)&&(v=!0,S(I).then(K=>K.install?.(a,W)).catch(()=>{}))});const b=Object.keys(i.capabilities??{}).filter(u=>Object.hasOwn(R,u)).map(u=>[u,R[u]]).filter(u=>typeof u[1]=="string"&&A.test(u[1])),l=await Promise.allSettled(b.map(([,u])=>S(u))),_=await e,d=E;if(_?.buildBoot||y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),_?.buildBoot)try{L=_.buildBoot(i,_.TRANSFORMS??{},{shellOrigin:d,mount:x,hooks:O},u=>y.post({__frame_cap_telemetry:u},d))}catch{y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),L=G(i,d)}else L=G(i,d);const T=u=>y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:u}},d),Ne=L;l.forEach((u,z)=>{const C=b[z][0];if(u.status!=="fulfilled"){T(C);return}try{u.value?.install?.(Ne)}catch{T(C)}}),F(),await m,y.post({__frame_ready:!0},E),e.then(u=>u?.installSizeReporter?.(d,g))})}else N&&(ee(),Re(N,Y,S,{settle:F,mount:x}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Script Ledger</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:        #f3f2ee;
+    --surface:   #ffffff;
+    --surface-2: #ebe9e2;
+    --border:    #dcd8ce;
+    --ink:       #1c1b17;
+    --ink-2:     #55524a;
+    --ink-muted: #8b8779;
+    --accent:      #2f5fb0;
+    --accent-ink:  #1d3f7a;
+    --accent-soft: #e6edfa;
+    --geo:  #2a78d6;
+    --name: #eb6834;
+    --org:  #1baf7a;
+    --neg:  #c1503d;
+    --latin: #a9c9f5;
+    --cyr:   #f3aeae;
+    --other: #c7c3b8;
+    --shadow: 0 1px 2px rgba(28,27,23,0.04), 0 8px 24px -12px rgba(28,27,23,0.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:        #131210;
+      --surface:   #1a1917;
+      --surface-2: #232220;
+      --border:    #34322c;
+      --ink:       #f5f4f0;
+      --ink-2:     #c7c3b7;
+      --ink-muted: #8f8b7e;
+      --accent:      #7ba7e8;
+      --accent-ink:  #bcd4f7;
+      --accent-soft: rgba(123,167,232,0.14);
+      --geo:  #3987e5;
+      --name: #d95926;
+      --org:  #199e70;
+      --neg:  #e0836b;
+      --latin: #6f97d1;
+      --cyr:   #d3827e;
+      --other: #8f8b7e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:        #131210;
+    --surface:   #1a1917;
+    --surface-2: #232220;
+    --border:    #34322c;
+    --ink:       #f5f4f0;
+    --ink-2:     #c7c3b7;
+    --ink-muted: #8f8b7e;
+    --accent:      #7ba7e8;
+    --accent-ink:  #bcd4f7;
+    --accent-soft: rgba(123,167,232,0.14);
+    --geo:  #3987e5;
+    --name: #d95926;
+    --org:  #199e70;
+    --neg:  #e0836b;
+    --latin: #6f97d1;
+    --cyr:   #d3827e;
+    --other: #8f8b7e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; }
+
+  .wrap{ max-width:1000px; margin:0 auto; padding:28px 20px 80px; }
+
+  header.top{
+    display:flex; flex-wrap:wrap; gap:20px 32px;
+    align-items:flex-end; justify-content:space-between;
+    padding-bottom:20px; margin-bottom:28px;
+    border-bottom:1px solid var(--border);
+  }
+  .kicker{
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-muted); font-weight:600; margin:0 0 6px;
+  }
+  h1{
+    font-size:clamp(24px,4vw,32px); font-weight:700; margin:0;
+    text-wrap:balance; letter-spacing:-.01em;
+  }
+  .lede{ font-size:14px; color:var(--ink-2); max-width:52ch; margin:8px 0 0; line-height:1.5; }
+
+  .switcher{
+    display:inline-flex; padding:3px; gap:2px;
+    background:var(--surface-2); border:1px solid var(--border); border-radius:10px;
+  }
+  .switcher button{
+    appearance:none; border:0; background:transparent; color:var(--ink-2);
+    font:inherit; font-weight:600; font-size:13px; padding:7px 16px; border-radius:7px;
+    cursor:pointer; transition:background .12s ease, color .12s ease;
+  }
+  .switcher button.active{ background:var(--surface); color:var(--ink); box-shadow:var(--shadow); }
+  .switcher button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .switcher-note{ font-size:12px; color:var(--ink-muted); margin-top:6px; text-align:right; }
+
+  .tiles{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--border); border:1px solid var(--border); border-radius:14px;
+    overflow:hidden; margin-bottom:36px;
+  }
+  .tile{ background:var(--surface); padding:16px 18px; }
+  .tile .label{ font-size:12px; color:var(--ink-muted); margin:0 0 6px; }
+  .tile .value{
+    font-size:26px; font-weight:700; letter-spacing:-.01em;
+    font-variant-numeric:proportional-nums;
+  }
+  .tile .sub{ font-size:12px; color:var(--ink-2); margin-top:3px; }
+
+  section.card{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:22px 24px 20px; margin-bottom:22px; box-shadow:var(--shadow);
+  }
+  section.card h2{ font-size:17px; font-weight:700; margin:0 0 4px; }
+  section.card p.desc{ font-size:13px; color:var(--ink-2); margin:0 0 16px; max-width:64ch; line-height:1.5; }
+
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:720px){ .grid-2{ grid-template-columns:1fr; } }
+
+  .legend{ display:flex; flex-wrap:wrap; gap:14px 20px; margin:0 0 14px; }
+  .legend .item{ display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-2); }
+  .legend .swatch{ width:11px; height:11px; border-radius:3px; flex:none; }
+
+  svg.chart{ display:block; width:100%; height:auto; overflow:visible; }
+  svg text{ fill:var(--ink-2); font-family:"Golos Text", sans-serif; }
+  svg .mono-text{ font-family:"JetBrains Mono", monospace; }
+  svg .axis-label{ fill:var(--ink-muted); }
+  svg .value-label{ fill:var(--ink); font-weight:600; }
+  svg .gridline{ stroke:var(--border); stroke-width:1; }
+  svg .baseline{ stroke:var(--ink-muted); stroke-width:1; }
+  .row, .bar-hit, .box-hit{ cursor:pointer; }
+  .row .bar, .bar-hit rect.bar{ transition:filter .12s ease; }
+  .row:hover .bar, .row:focus .bar,
+  .bar-hit:hover .bar, .bar-hit:focus .bar,
+  .box-hit:hover .box, .box-hit:focus .box{ filter:brightness(1.12); }
+  .row:focus, .bar-hit:focus, .box-hit:focus{ outline:none; }
+
+  details.table-toggle{ margin-top:14px; }
+  details.table-toggle summary{
+    cursor:pointer; font-size:12.5px; color:var(--accent-ink); font-weight:600;
+    list-style:none; display:inline-flex; align-items:center; gap:5px;
+  }
+  details.table-toggle summary::-webkit-details-marker{ display:none; }
+  details.table-toggle summary::before{ content:"▸"; font-size:10px; transition:transform .12s ease; }
+  details.table-toggle[open] summary::before{ transform:rotate(90deg); }
+  .table-scroll{ overflow-x:auto; margin-top:10px; }
+  table.data{ border-collapse:collapse; width:100%; font-size:12.5px; }
+  table.data th, table.data td{
+    text-align:left; padding:6px 10px; border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  table.data th{ color:var(--ink-muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+  table.data td.num{ text-align:right; font-variant-numeric:tabular-nums; font-family:"JetBrains Mono", monospace; }
+
+  .note{
+    display:flex; gap:10px; padding:12px 14px; margin-top:14px;
+    background:var(--accent-soft); border-radius:10px; font-size:12.5px; color:var(--ink-2); line-height:1.5;
+  }
+  .note .dot{ flex:none; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:6px; }
+  .note b{ color:var(--ink); font-weight:600; }
+  .model-table-wrap{ overflow-x:auto; }
+  .model-table{ min-width:760px; }
+  .model-table th:first-child, .model-table td:first-child{ padding-left:0; }
+  .model-table th:last-child, .model-table td:last-child{ padding-right:0; }
+  .model-name{ font-weight:700; color:var(--ink); }
+  .model-id{ display:block; color:var(--ink-muted); font:11px "JetBrains Mono", monospace; margin-top:3px; }
+  .f1-cell{ min-width:170px; }
+  .f1-value{ display:flex; align-items:center; justify-content:space-between; gap:12px; font:600 13px "JetBrains Mono", monospace; }
+  .f1-value small{ color:var(--ink-muted); font:10px "JetBrains Mono", monospace; }
+  .f1-bar{ height:6px; margin-top:6px; background:var(--surface-2); border-radius:99px; overflow:hidden; }
+  .f1-bar span{ display:block; height:100%; border-radius:99px; background:var(--accent); }
+  .rank{ color:var(--ink-muted); font:600 12px "JetBrains Mono", monospace; width:28px; }
+  .model-note{ margin-top:14px; }
+  td.delta{ font:700 13px "JetBrains Mono", monospace; }
+
+  footer{ text-align:center; font-size:12px; color:var(--ink-muted); padding-top:8px; }
+
+  .tooltip{
+    position:fixed; z-index:80; pointer-events:none; max-width:230px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    padding:9px 11px; box-shadow:var(--shadow); font-size:12px;
+  }
+  .tooltip .tt-title{ font-weight:700; color:var(--ink); margin-bottom:5px; font-size:12.5px; }
+  .tooltip .tt-row{ display:flex; justify-content:space-between; gap:14px; color:var(--ink-2); padding:1px 0; }
+  .tooltip .tt-row .v{ color:var(--ink); font-family:"JetBrains Mono", monospace; font-variant-numeric:tabular-nums; }
+  [hidden]{ display:none !important; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="kicker">EDA · разметка exact-span NER</p>
+      <h1>Script Ledger</h1>
+      <p class="lede">Символы, теги и смешение письменностей в узбекском датасете NER — 13&nbsp;000 примеров train, 1&nbsp;500 dev, метки GEO / NAME / ORG.</p>
+    </div>
+    <div>
+      <div class="switcher" role="tablist" aria-label="Выбор выборки">
+        <button type="button" data-split="train" class="active" role="tab" aria-selected="true">train</button>
+        <button type="button" data-split="dev" role="tab" aria-selected="false">dev</button>
+      </div>
+      <p class="switcher-note" id="split-note">13 000 примеров</p>
+    </div>
+  </header>
+
+  <div class="tiles" id="tiles"></div>
+
+  <section class="card">
+    <h2>Алфавитный состав символов</h2>
+    <p class="desc">40 самых частых символов текста. Цвет — принадлежность к алфавиту; длина полосы — логарифмическая, иначе пробел (самый частый символ) сжал бы остальные до нуля.</p>
+    <div class="legend" id="char-legend"></div>
+    <div id="char-chart"></div>
+    <details class="table-toggle"><summary>Показать как таблицу</summary>
+      <div class="table-scroll"><table class="data" id="char-table"></table></div>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Длина примеров</h2>
+    <p class="desc">Распределение длины текста в символах (шкала X — логарифмическая: несколько очень длинных постов иначе полностью забивают гистограмму).</p>
+    <div id="len-chart"></div>
+    <details class="table-toggle"><summary>Показать как таблицу</summary>
+      <div class="table-scroll"><table class="data" id="len-table"></table></div>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Сущности по тегам</h2>
+    <p class="desc">Частота меток и длина спана (в символах) для GEO, NAME и ORG. Один цвет = одна метка в обоих графиках.</p>
+    <div class="legend" id="entity-legend"></div>
+    <div class="grid-2">
+      <div>
+        <div id="label-chart"></div>
+        <details class="table-toggle"><summary>Показать как таблицу</summary>
+          <div class="table-scroll"><table class="data" id="label-table"></table></div>
+        </details>
+      </div>
+      <div>
+        <div id="box-chart"></div>
+        <details class="table-toggle"><summary>Показать как таблицу</summary>
+          <div class="table-scroll"><table class="data" id="box-table"></table></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Шум: смешение письменностей</h2>
+    <p class="desc">Доля примеров, где в одном тексте встречаются и кириллица, и латиница, а также доля примеров с вкраплениями других письменностей (арабица, тайская вязь и т.п.).</p>
+    <div id="noise-chart"></div>
+    <div class="note"><span class="dot"></span><div><b>ʻ</b> и <b>ʼ</b> (апостроф в oʻ / gʻ) считаются частью узбекской латиницы, а не «другим алфавитом» — они не входят в долю шума.</div></div>
+    <details class="table-toggle"><summary>Показать как таблицу</summary>
+      <div class="table-scroll"><table class="data" id="noise-table"></table></div>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Train: эффект аугментации и чистки данных</h2>
+    <p class="desc">Шесть конфигураций <span class="mono">data/train.jsonl</span>, каждая дообучена и провалидирована отдельно (DistilBERT multilingual, 3 эпохи, seed&nbsp;42, идентичные гиперпараметры) — эффект каждой виден изолированно, без смешивания между собой. Нормализация апострофов и транслитерация специально разнесены на два шага: транслитерация строится поверх уже нормализованной базы, чтобы её эффект не включал в себя эффект самой нормализации. Последняя конфигурация — не добавление, а <b>удаление</b>: чистка ALL-CAPS/растянутых/слишком коротких записей из train (11&nbsp;733 вместо 13&nbsp;000). dev-выборка (1&nbsp;500 примеров) не меняется ни в одной конфигурации.</p>
+    <div class="legend" id="aug-legend"></div>
+    <div id="aug-chart"></div>
+    <details class="table-toggle"><summary>Показать как таблицу</summary>
+      <div class="table-scroll"><table class="data" id="aug-chart-table"></table></div>
+    </details>
+    <div class="model-table-wrap" style="margin-top:22px"><table class="data model-table" id="aug-table"></table></div>
+    <div class="note model-note"><span class="dot"></span><div><b>Итог:</b> нормализация апострофов сама по себе эффекта не даёт (в пределах шума); весь прирост транслитерации — от добавленных cyr↔lat дублей поверх неё. Внешний аннотированный корпус (Kaggle courpusNER2015) тоже дал чистый прирост; аугментация опечатками и чистка train от шумного форматирования — обе дали просадку, в обоих случаях сильнее всего по ORG (в чистке — предположительно потому, что ALL-CAPS-посты непропорционально часто упоминают организации, и вместе с шумом ушла реальная разметка). Ещё несколько протестированных вариантов (второй внешний корпус поверх Kaggle, сырой текст без разметки) сюда не вошли — не улучшили результат, разбор в <span class="mono">augmentation/README.md</span> и <span class="mono">cleaning/README.md</span>.</div></div>
+
+    <p class="desc" style="margin-top:22px"><b style="color:var(--ink)">Доп. проверка для внешнего корпуса:</b> совместное (pooled) обучение на смеси target+внешний корпус против каскадного (сначала 3 эпохи только на внешнем корпусе, затем ещё 3 эпохи дообучения только на target с этого чекпоинта).</p>
+    <div class="model-table-wrap"><table class="data model-table" id="cascade-table"></table></div>
+    <div class="note"><span class="dot"></span><div>Каскад едва обгоняет baseline (+0.002 micro-F1) и заметно проигрывает pooled (&minus;0.009): 3 эпохи дообучения только на target почти стирают то, что модель выучила на внешнем корпусе на первом этапе (dev-loss каскада к концу почти совпадает с обычным baseline). Pooled остаётся рекомендованной схемой для этого шага.</div></div>
+  </section>
+
+  <section class="card">
+    <h2>Готовые NER-модели</h2>
+    <p class="desc">Локальный inference на 1&nbsp;500 примерах <span class="mono">dev</span>. Рейтинг отсортирован по exact-span micro-F1. Дообучения не использовалось.</p>
+    <div class="model-table-wrap"><table class="data model-table" id="model-table"></table></div>
+    <div class="note model-note"><span class="dot"></span><div><b>Как читать:</b> micro-F1 требует одновременного совпадения класса и точных границ span. Все значения качества указаны в диапазоне от 0.00 до 1.00.</div></div>
+  </section>
+
+  <footer>scripts/eda.py · data/train.jsonl · data/dev.jsonl</footer>
+</div>
+
+<div class="tooltip" id="tooltip" hidden></div>
+
+<script id="dashboard-data" type="application/json">{"train":{"totalDocs":13000,"totalEntities":66083,"docsWithoutEntities":2386,"uniqueChars":1656,"charFreq":[{"char":" ","count":819046,"alphabet":"other"},{"char":"a","count":544538,"alphabet":"latin"},{"char":"i","count":466957,"alphabet":"latin"},{"char":"n","count":242548,"alphabet":"latin"},{"char":"o","count":238273,"alphabet":"latin"},{"char":"а","count":209097,"alphabet":"cyrillic"},{"char":"l","count":209073,"alphabet":"latin"},{"char":"r","count":205336,"alphabet":"latin"},{"char":"и","count":184392,"alphabet":"cyrillic"},{"char":"s","count":173365,"alphabet":"latin"},{"char":"t","count":156488,"alphabet":"latin"},{"char":"h","count":148628,"alphabet":"latin"},{"char":"d","count":138118,"alphabet":"latin"},{"char":"m","count":129968,"alphabet":"latin"},{"char":"u","count":116962,"alphabet":"latin"},{"char":"e","count":115457,"alphabet":"latin"},{"char":"g","count":113572,"alphabet":"latin"},{"char":"b","count":105083,"alphabet":"latin"},{"char":"k","count":100888,"alphabet":"latin"},{"char":"y","count":98284,"alphabet":"latin"},{"char":"н","count":92544,"alphabet":"cyrillic"},{"char":"л","count":86228,"alphabet":"cyrillic"},{"char":"р","count":84789,"alphabet":"cyrillic"},{"char":"о","count":74690,"alphabet":"cyrillic"},{"char":"q","count":69205,"alphabet":"latin"},{"char":"т","count":62782,"alphabet":"cyrillic"},{"char":"z","count":57549,"alphabet":"latin"},{"char":".","count":57421,"alphabet":"other"},{"char":"д","count":54468,"alphabet":"cyrillic"},{"char":"v","count":50005,"alphabet":"latin"},{"char":"м","count":49681,"alphabet":"cyrillic"},{"char":"ʻ","count":48607,"alphabet":"other"},{"char":"у","count":45020,"alphabet":"cyrillic"},{"char":"к","count":44127,"alphabet":"cyrillic"},{"char":"г","count":41482,"alphabet":"cyrillic"},{"char":"б","count":40829,"alphabet":"cyrillic"},{"char":"c","count":40241,"alphabet":"latin"},{"char":"с","count":39552,"alphabet":"cyrillic"},{"char":",","count":39459,"alphabet":"other"},{"char":"е","count":33134,"alphabet":"cyrillic"}],"textLengths":[1057,24,78,64,77,52,16,33,272,67,13,347,80,46,15,888,551,60,161,40,41,18,49,60,39,33,1739,54,68,44,742,81,273,71,29,14,50,1007,96,57,55,105,192,55,18,18,15,34,295,63,36,167,37,76,25,19,418,44,29,84,41,1963,1124,198,31,46,2122,31,47,805,57,127,58,180,24,42,78,124,47,75,29,3019,110,59,24,763,45,12,88,41,312,34,38,64,64,41,20,121,78,999,80,34,25,51,1342,36,36,49,44,454,50,49,1563,141,118,36,55,56,24,24,214,388,32,19,940,25,20,48,25,45,250,59,51,37,29,41,31,80,13023,61,15,35,32,58,438,1692,155,37,115,151,1539,77,52,1365,18,44,16,122,93,115,53,36,99,43,42,38,2007,40,47,69,3018,922,31,37,72,48,108,55,170,14,174,42,41,2275,103,109,117,173,83,38,52,65,318,47,25,28,132,27,83,42,39,76,64,967,36,51,627,182,391,13,13,26,83,28,262,40,80,66,47,2079,2315,19,629,699,78,17,49,821,764,34,83,59,112,1264,128,95,31,3039,35,36,1353,539,165,1005,48,3270,67,19,27,5080,39,75,31,40,55,52,34,80,73,19,72,226,26,48,53,8762,45,53,27,62,94,48,257,25,320,123,17,48,38,48,47,763,33,49,78,63,16,1077,48,45,69,78,34,182,465,77,90,95,28,86,204,88,750,30,28,1003,49,95,171,10056,2063,505,108,164,51,33,21,36,108,240,33,18,58,80,17,169,2272,75,94,45,643,40,47,42,37,27,120,1763,54,277,72,146,1141,191,92,57,117,52,56,76,498,39,36,69,111,499,37,29,61,52,110,226,48,37,359,58,25,105,53,116,92,170,50,2080,30,28,34,49,107,100,58,60,40,83,22,52,46,27,88,126,106,100,890,63,54,1202,194,30,73,56,49,31,323,198,905,48,457,24,393,107,40,39,35,128,61,148,787,47,139,54,32,111,3013,82,42,2966,26,40,30,447,150,39,30,99,34,23,65,215,58,20,58,116,120,902,43,276,32,100,129,265,51,40,63,272,51,41,241,8131,167,1175,347,132,34,1780,78,54,724,89,99,38,121,958,39,49,31,241,1781,75,25,1222,87,11,152,34,5370,222,72,116,90,74,47,129,18,75,88,64,141,38,86,378,191,56,42,31,370,80,36,72,42,61,155,118,2181,614,36,46,161,694,66,738,623,987,28,66,46,77,1120,111,102,31,46,22,266,1483,79,3155,51,27,1368,968,66,15,25,2853,337,69,292,41,387,3496,514,30,33,506,128,87,106,52,53,57,74,158,127,44,65,28,60,30,86,388,12,1269,19,44,48,115,48,22668,49,47,94,395,247,280,30,29,22,49,100,46,150,1374,535,78,26,41,3698,201,36,30,865,540,124,111,57,53,19,45,32,11,26,20,22,57,50,487,80,172,51,956,111,69,69,51,288,16,44,2634,50,465,6741,43,992,301,23,32,28,96,79,274,78,157,77,139,11,1390,25,57,33,60,1459,25,53,12,25,44,7200,86,81,178,1175,39,85,37,32,36,58,74,27,32,651,2135,62,42,86,40,125,107,430,49,38,64,49,49,32,50,90,43,90,65,2324,23,35,207,376,22,19,44,92,79,48,110,254,186,85,48,238,71,40,36,515,52,22,1135,16,144,597,49,163,1672,100,31,1037,633,30,3671,201,71,2130,439,133,13,45,85,140,205,43,45,37,1914,38,2075,599,46,14,46,1083,368,67,43,11,97,61,193,896,43,6992,92,45,93,109,2655,102,182,20,83,58,249,53,42,30,48,43,16,207,35,33,34,173,212,33,113,49,37,39,50,84,39,133,38,63,46,19,234,35,124,50,26,3067,29,30,30,2564,77,67,72,81,48,60,545,2047,30,35,665,40,297,110,43,102,35,36,178,204,945,69,63,18,71,126,57,44,27,34,258,63,287,164,89,624,104,194,79,415,23,276,41,63,124,39,67,57,25,30,154,42,76,1266,23,40,44,1040,88,3351,987,43,46,50,82,18,43,26,725,29,131,45,1514,43,45,139,1183,41,2816,1124,61,35,55,748,74,34,31,50,27,33,791,66,73,54,101,119,35,35,19,54,17,111,86,3633,174,55,3002,752,77,29,95,16,39,77,36,143,335,887,62,71,51,74,30,29,85,37,168,24,54,126,263,30,107,255,67,265,43,97,32,52,16,61,326,48,149,55,159,63,58,29,108,27,25,89,41,40,136,41,94,51,26,311,38,1012,114,237,63,751,487,31,26,160,802,16,1103,205,14,294,56,422,190,95,69,95,53,63,27,10,61,182,56,34,49,132,106,46,38,905,52,42,48,51,22,44,40,2166,45,213,84,272,1822,45,14,32,665,1173,28,74,27,71,47,83,55,50,24,225,25,44,997,149,27,20,19,53,1571,67,311,282,64,307,55,31,281,99,2805,4004,917,1472,64,27,66,40,71,32,38,63,42,25,31,67,44,95,121,61,46,29,25,28,1581,28,59,63,379,164,756,76,14676,641,32,113,24,114,96,44,43,2733,46,73,47,19,49,23,33,23,15,41,982,127,70,96,31,94,24,64,54,327,116,42,271,313,44,47,37,1890,11,33,60,32,31,206,47,151,126,52,200,127,224,53,1672,53,200,3197,47,529,307,96,22,84,45,51,630,12,15,13,528,1191,38,871,37,62,131,38,73,1845,588,90,1798,158,1098,57,24,32,50,719,33,122,3952,19,1194,34,36,119,68,2305,704,1966,187,439,50,41,115,1563,353,49,62,9394,969,177,24,27,30,214,37,1107,227,27,71,69,44,260,24,40,43,162,1820,72,19,21,31,986,116,29,47,70,106,30,30,36,49,42,1813,36,180,16,62,127,113,740,15,112,168,24,29,196,45,230,376,68,56,29,73,38,38,27,52,120,82,29,27,23,555,197,1293,32,29,297,50,48,70,24,38,87,56,110,93,34,287,324,88,57,810,94,47,152,855,56,38,1118,1234,111,89,244,243,33,45,30,83,34,17,46,40,52,23,32,896,6748,47,23,24,45,80,58,50,62,28,69,22,505,34,29,299,31,21,81,139,983,34,61,36,119,971,30,80,20,36,1258,35,774,62,26,84,38,111,172,52,65,50,21,27,782,277,47,281,45,57,77,34,32,983,68,103,102,398,6626,2184,36,56,160,129,126,54,39,254,50,408,228,1136,84,80,1404,64,26,51,51,196,61,61,40,27,52,39,27,2112,191,2948,59,1474,129,32,24,68,445,70,28,25,74,61,35,37,59,55,77,703,144,50,2340,136,35,1708,3107,32,249,354,32,421,49,28,822,30,13,1494,37,3403,949,85,82,1226,1615,142,25,1283,38,33,44,54,38,1507,77,534,26,14,105,56,61,47,260,44,36,43,16,1402,116,21,24,37,30,110,10,31,163,1565,47,457,33,157,825,82,35,45,234,41,57,17,34,141,42,269,2023,54,91,1316,53,61,972,1276,467,1883,1629,121,286,157,146,345,102,29,644,1366,33,660,44,830,1125,117,511,3388,271,102,209,73,119,352,41,66,39,3286,554,78,32,27,1095,79,17,66,20,106,319,667,78,91,76,38,81,196,3744,61,792,22,2612,27,103,421,23,150,953,645,47,48,44,70,1319,74,47,57,33,1357,26,123,1186,165,14,33,17,1063,199,1549,169,718,37,19,72,78,973,83,77,66,717,37,54,114,227,810,24,3335,51,10463,98,1668,116,30,34,1295,1592,31,54,1209,135,47,609,255,1471,61,73,25,38,43,118,61,1290,75,1871,112,899,291,1405,56,58,429,51,1048,88,1126,122,85,303,278,6412,232,21,294,1242,662,1347,1582,3969,10008,93,104,26,121,11,302,43,2929,112,222,35,93,42,925,460,56,237,55,246,97,899,26,29,521,3856,73,27,325,940,1240,513,152,95,1088,23,32,112,215,21,25,43,2110,91,166,22,1017,923,26,55,59,225,863,1258,479,111,271,813,96,266,287,20,118,209,5338,29,288,18,923,67,25,55,36,44,48,295,82,47,1104,71,55,121,2564,468,689,54,8746,350,696,21,840,68,46,1449,109,1412,187,52,66,39,46,774,301,32,2440,72,912,767,1071,32,14,55,84,64,996,20,861,100,158,1611,1611,41,832,463,337,121,52,313,236,748,199,102,36,102,35,20,250,189,48,1060,160,979,480,541,320,33,441,50,1270,61,113,31,1106,34,1923,53,345,68,39,29,3273,24,971,36,161,28,515,256,22,31,49,136,32,736,2172,526,326,97,678,178,119,623,32,2921,146,69,48,167,327,31,315,952,23,2847,293,66,41,2253,31,1997,16,72,135,24,71,36,46,46,90,784,54,484,1554,11,134,22,1827,1617,62,53,156,26,282,81,24,310,4042,65,169,184,138,230,100,186,24,55,1954,1838,1837,1211,709,397,8994,15,15,46,2062,438,38,2717,1683,684,97,1179,21,532,75,200,49,51,146,1224,2812,125,472,140,250,210,37,29,35,51,175,91,20,443,3375,23,3169,17,92,101,32,1943,60,42,99,65,129,76,95,1761,18,24,104,44,30,169,92,33,141,477,6467,247,186,43,3854,440,471,58,582,23,75,1280,73,345,1732,63,1055,48,48,35,109,17,40,82,15,2836,462,40,29,1598,51,40,1697,28,23,1793,14,1618,757,36,2212,75,15,895,21,90,100,43,65,56,365,51,5194,2835,225,21,2106,25,61,702,97,187,293,4230,31,46,181,1669,52,784,4991,285,97,699,37,104,51,515,38,562,1733,93,1055,105,654,21,73,3430,24,266,189,1422,32,17,189,27,370,256,10,84,26,28,525,170,166,312,31,41,383,670,44,579,1833,214,30,216,276,890,1149,95,189,99,54,550,250,47,33,1698,149,233,45,921,144,50,32,52,61,51,9677,118,30,25,181,279,43,95,33,783,52,26,86,28,1316,68,306,586,21,1387,44,617,303,40,26,45,2465,166,48,112,631,398,62,157,286,105,60,124,2030,833,356,1743,151,159,108,160,2369,19,2992,2095,12,39,154,716,43,157,638,675,285,762,93,2727,699,1612,876,6796,781,111,94,27,192,39,326,797,43,357,134,548,4854,39,2208,124,1651,556,38,531,1101,16,171,121,68,97,190,58,1810,288,1205,65,1982,26,366,47,861,82,74,32,159,126,54,37,132,122,28,10,92,105,1325,728,67,44,44,22,35,2664,106,2802,90,2607,80,381,1330,46,178,50,70,579,639,408,105,88,117,828,85,26,22,1083,21,692,2169,88,94,3288,616,58,1266,38,24,137,336,38,15,78,57,2080,49,289,83,32,117,273,2131,5576,1073,61,3952,57,633,2999,98,670,75,79,47,1315,1446,32,102,876,1461,90,58,816,30,116,57,54,42,57,40,57,88,731,1017,239,1901,69,1998,22,3352,175,690,400,31,2228,48,995,437,1230,70,22,572,117,40,61,34,27,173,419,36,4212,24,47,43,598,3908,420,182,39,203,1216,69,67,961,165,196,189,63,89,822,62,40,32,3696,252,155,25,815,842,2995,33,97,51,826,805,2193,70,1091,42,2781,1069,73,34,19,140,540,23,33,566,20,933,3643,666,26,50,1438,324,1827,66,17,1043,42,300,233,69,733,149,149,36,631,66,16,76,25,225,31,913,26,2426,394,3805,125,177,72,65,61,104,976,121,3257,1893,739,50,58,82,5527,25,54,163,99,100,144,1186,57,91,132,162,535,53,48,32,21,76,11064,19,23,130,118,613,811,548,155,230,2071,773,1254,1384,816,157,19,37,920,1164,25,52,24,801,1229,43,96,948,166,103,1626,1247,46,159,588,43,32,36,3109,29,1063,157,26,1735,649,568,502,300,1094,47,72,26,23,30,45,94,53,1014,57,1318,58,16,71,48,251,219,79,109,1430,1476,26,40,29,24,54,927,59,29,207,45,8017,35,215,52,1062,1128,81,31,54,2829,529,92,1872,38,11287,558,1537,126,1160,19,1732,91,206,374,36,189,41,64,1831,150,79,16,33,1086,288,74,200,58,1311,32,4894,658,5668,252,95,1023,672,11663,3479,58,24,1030,28,29,26,5168,156,2251,564,1324,520,26,959,491,199,80,618,25,28,152,1208,28,249,178,1926,2635,1605,102,25,69,87,82,1080,74,364,42,49,722,211,908,19,19,73,32,428,1279,838,65,65,57,44,67,86,52,456,73,399,134,844,89,138,85,2019,35,1012,598,16,773,1244,172,39,17,3801,566,228,52,2356,48,39,36,83,86,2185,30,935,163,51,77,18,14,266,202,865,52,106,291,1612,71,210,62,47,35,50,26,15,810,492,123,1558,61,1226,17,851,2020,1266,1399,143,159,2753,35,32,205,43,2246,104,43,462,19,111,44,76,5436,193,47,24,329,594,18,36,814,732,134,385,91,953,1227,2329,23,186,115,114,43,540,12,29,18,37,159,196,34,968,70,850,32,15,67,19,53,16,8471,425,1450,70,2631,769,101,42,89,148,459,856,52,36,141,42,640,1267,1603,688,1730,100,28,34,2298,33,768,541,93,190,170,724,923,1786,743,52,59,881,118,3203,542,543,1728,93,79,1074,718,282,68,109,95,81,10,924,748,226,222,1131,54,192,1683,35,385,458,297,465,454,264,435,119,502,2439,47,5516,89,441,3476,89,84,115,1305,46,893,17,36,1461,1387,89,29,659,94,279,461,23,37,1681,1424,57,55,24,877,3092,804,107,2501,39,735,212,8884,500,1331,1029,245,43,17,455,92,1563,83,481,26,56,65,367,163,71,769,178,32,3139,850,378,323,53,186,69,194,440,952,699,70,32,3082,668,49,32,83,88,1677,1248,311,88,399,241,1111,110,201,2929,617,228,325,46,268,275,26,31,483,637,55,1185,45,25,306,1341,11,10655,59,180,1404,18,42,87,50,2005,30,39,138,10960,568,172,29,14,148,362,40,57,1702,155,55,49,150,365,51,32,416,203,1420,21,707,2355,1103,24,743,11129,23,419,291,17,35,4104,69,89,640,843,409,401,774,40,1255,43,79,29,547,10,65,55,384,2756,152,190,479,31,108,118,47,110,165,180,84,35,822,2644,129,1685,1024,31,85,164,1651,35,48,149,34,28,765,48,37,49,33,290,1551,824,316,126,50,35,1250,510,24,310,47,351,206,746,669,67,930,1262,38,72,829,25,222,246,38,210,924,60,143,1760,100,27,39,2153,90,20,28,71,1056,39,16,89,28,48,1649,2502,166,486,182,87,67,361,1170,67,239,166,290,45,49,25,251,86,934,213,34,1287,841,169,355,26,2072,86,25,199,511,375,58,4072,65,785,65,1086,23,402,83,72,33,38,1788,250,233,27,1785,37,12,58,37,40,48,705,317,1216,11,132,815,3081,51,808,768,27,336,4282,53,131,38,20,3067,34,3714,393,1162,90,785,78,1432,1366,366,24,25,121,182,357,17,1081,121,142,73,768,26,40,176,584,993,242,107,265,33,1661,296,25,992,991,1336,446,1968,24,762,2263,591,1473,71,2268,66,254,412,24,48,32,1637,644,66,618,1020,5042,669,50,1436,2184,129,210,34,50,457,62,3734,1810,473,443,1383,1725,364,6272,26,1046,2115,1491,132,58,321,2062,1871,51,133,47,148,1335,3414,39,341,47,7848,23,82,2546,18,1448,1593,304,89,2931,76,991,105,233,129,633,169,44,371,32,1603,119,76,1153,44,83,1285,87,37,19,7557,33,1348,1642,143,330,580,35,140,1733,56,1139,837,33,701,1372,91,32,21,9695,358,39,108,89,372,18,372,47,110,885,60,949,364,38,151,207,138,152,84,823,148,37,117,83,418,4288,702,46,30,36,149,34,29,531,75,799,44,492,245,1396,1772,22,695,113,83,505,729,836,2068,58,4071,1048,137,567,105,35,123,1684,288,57,1940,2104,197,43,68,32,1093,1655,228,673,1677,364,79,65,293,62,68,116,91,333,39,2661,2627,2771,68,41,35,391,3188,52,3131,66,51,688,1214,660,26,1121,61,127,217,266,66,40,193,67,973,953,377,27,961,320,853,224,22,967,29,3919,60,128,409,1473,2027,2766,153,1258,592,48,199,475,699,122,177,22,18,376,477,1211,2723,64,1412,22,36,2896,861,593,259,15,289,1399,1459,83,42,2976,1234,874,2912,100,759,142,102,681,63,43,42,9579,108,72,1321,14584,35,51,1347,70,109,1612,92,91,721,1297,612,14,23,2161,1595,83,24,792,103,541,7921,196,1565,54,313,402,74,4069,306,58,712,282,44,385,18,1077,21,156,1282,296,615,1033,458,461,891,31,475,275,32,49,561,37,1383,747,520,693,148,1454,2488,494,71,22,3147,25,95,32,591,630,32,434,361,13123,16081,36,75,161,1738,104,2104,381,406,526,1637,39,79,66,72,29,49,4446,53,43,137,841,1180,237,83,231,3299,35,1508,53,126,1205,227,1484,662,1784,29,1134,122,396,79,588,418,613,87,116,1029,26,1561,1594,37,26,942,18,29,2370,46,143,55,575,33,83,508,2160,118,812,269,40,2284,989,93,113,4290,416,76,31,635,227,229,96,52,23,1073,714,1622,460,16381,99,1408,831,36,262,1102,1095,98,420,470,641,3950,995,33,1406,304,284,40,68,467,39,846,63,2980,804,319,286,44,46,5340,164,360,56,50,1291,733,425,2957,42,1626,2304,107,94,56,1893,574,899,702,22,3226,56,39,148,69,487,258,3290,781,508,68,69,587,969,797,35,827,1393,60,560,718,41,346,1060,1099,151,54,1101,1721,1212,71,230,1368,135,68,596,31,93,240,1819,836,262,44,45,1110,493,47,797,61,892,78,41,661,454,84,36,45,56,1833,107,46,2204,219,214,238,38,384,202,191,38,1292,73,1375,2307,165,248,115,89,324,49,463,17,29,1312,478,1629,22,783,1232,92,403,27,2245,42,125,62,930,152,1685,494,810,606,161,1046,98,49,43,1803,75,490,23,18,720,2365,841,253,1954,3147,33,303,530,541,3486,43,7461,1264,587,28,281,2633,1343,1227,1863,1347,432,77,36,849,165,625,1384,3701,995,1505,404,320,118,26,145,1137,658,38,612,174,1284,821,2331,701,88,652,3170,299,85,1362,172,301,25,1089,123,3317,17,50,35,73,903,587,571,523,1626,346,2002,1174,1387,31,27,106,1434,434,211,986,152,920,31,1242,401,633,41,82,134,1008,88,1600,1706,66,93,944,3112,713,37,459,1589,742,715,671,37,290,35,2581,4030,977,449,2206,190,33,459,1759,95,2348,214,1211,30,39,40,10717,69,369,30,190,1640,99,35,2271,2382,887,45,139,161,57,377,108,119,494,1027,1984,1940,34,688,75,2894,703,90,1201,1781,10,51,29,554,865,32,2716,2203,53,873,27,11,462,3092,1317,81,133,332,2044,70,83,953,39,66,1339,8819,1958,857,267,154,994,21,1939,75,3175,709,28,21,21,474,1474,75,174,3299,1411,389,1189,1160,403,749,1297,1313,56,1961,1654,2303,329,1180,826,1364,190,1392,1353,846,24,1298,982,427,45,109,50,534,1181,387,1087,108,50,537,951,102,490,1313,108,474,35,10850,332,15,1009,1212,137,767,351,86,811,1275,367,12,405,140,2790,1566,3629,613,137,125,327,17,71,1522,2580,976,1616,2251,162,12,33,31,50,59,56,7625,184,2577,111,824,231,568,248,519,17,1630,36,1041,7,4179,283,2982,107,593,25,12064,504,35,63,206,1472,75,1425,233,1019,149,76,66,11,124,1428,113,952,230,115,845,1857,1088,50,1550,82,370,1458,761,760,124,379,462,189,2579,308,2950,240,5657,2774,459,2561,1172,612,759,266,399,6575,933,776,6946,716,45,78,36,584,2337,581,37,40,301,34,389,35,221,822,156,2166,11146,1330,1224,64,125,107,918,1313,1126,438,520,938,96,2590,143,21,78,90,38,193,1313,185,26,707,31,319,84,716,40,382,1234,13,476,1474,2211,370,30,842,1146,954,46,17,843,454,654,270,1322,53,154,2802,1368,681,69,798,2425,321,106,42,25,439,8912,1484,1439,2685,27,611,834,237,2284,62,70,499,27,659,670,911,751,89,476,161,337,28,4054,97,93,358,2040,69,32,49,953,3320,15,872,52,1888,58,29,404,68,1330,16,33,156,6273,1621,620,142,913,167,66,44,1305,449,1785,376,29,89,1009,31,29,39,493,88,1002,394,674,32,46,74,59,2402,78,301,21,4996,994,45,51,360,291,131,593,1606,1804,34,33,606,1319,278,42,172,48,68,2002,67,69,2663,854,1266,1107,32,1628,169,167,130,1327,335,125,76,219,3739,1382,1184,1130,75,101,1399,1297,46,352,106,248,283,789,74,146,1645,1673,1258,886,22,403,781,1833,29,2631,56,1226,46,2342,575,93,3152,139,720,857,32,12421,1683,392,55,28,1746,1348,6648,59,754,174,208,365,73,129,66,3789,302,139,165,238,562,29,8463,721,117,13,79,101,52,388,113,237,836,114,51,44,204,74,5349,28,52,22,364,110,48,706,53,81,993,30,46,119,167,548,138,52,712,120,1469,59,126,4163,216,584,66,3533,30,59,44,4110,761,424,242,1101,163,19,29,819,178,30,35,118,1640,39,175,1915,75,508,42,339,108,10,1416,47,322,52,240,44,79,45,20,46,93,38,63,19,73,169,88,25,58,1072,107,96,540,438,284,92,2215,400,95,529,31,32,106,917,91,132,5984,516,106,174,291,24,19,62,1010,100,37,63,153,99,141,254,902,69,59,32,310,31,303,236,926,596,140,86,699,438,290,93,43,75,48,134,157,1005,97,25,392,61,338,188,93,114,388,41,186,191,180,41,47,363,357,49,134,37,74,58,78,62,127,19,146,76,37,54,693,118,929,28,104,1213,242,3698,144,24,409,53,843,23,113,33,229,35,40,54,74,26,160,3549,21,41,3256,43,70,32,101,2625,762,270,106,52,29,31,78,224,17,105,282,220,845,72,111,10,31,906,788,216,73,17,60,627,65,395,107,60,965,49,50,31,170,54,1317,94,72,94,71,175,45,232,102,58,791,2117,198,211,11,32,10,206,31,68,61,127,272,44,42,253,38,324,1320,241,108,51,100,1154,622,28,68,22,26,108,383,217,30,612,642,21,110,18,38,184,29,268,55,63,865,76,3244,233,219,89,103,291,350,26,209,128,48,32,76,128,869,269,89,93,61,94,44,113,41,181,253,598,706,227,79,286,517,9,2012,5712,72,39,56,162,313,25,190,628,46,43,200,125,184,106,15,38,10261,51,201,56,1007,536,342,6361,31,111,253,247,79,208,55,89,28,16,961,75,63,101,22,2584,33,61,382,92,724,2769,311,93,85,39,76,948,54,723,288,150,346,28,30,102,433,647,16,52,74,55,750,399,67,26,120,443,35,61,288,230,60,1513,84,613,141,57,1001,931,479,125,480,977,49,353,23,1985,68,7698,128,1443,52,14,2276,25,562,535,30,38,25,90,506,368,1412,175,49,99,2254,104,70,933,51,79,407,27,30,312,105,90,898,29,154,52,25,138,45,125,34,28,449,382,8055,1253,38,525,39,41,50,26,78,211,35,290,50,273,258,102,95,86,26,6580,1453,810,1211,583,1133,2063,6525,55,43,27,65,304,32,114,1049,48,177,84,20,74,86,54,717,30,3439,277,28,42,118,44,38,140,22,51,40,253,5386,86,71,243,309,130,108,100,56,240,279,633,1152,63,31,54,187,730,1246,152,249,907,3712,15047,381,621,25,87,36,145,25,254,195,4057,47,2334,67,78,353,4369,36,832,363,22,1147,607,23,122,28,50,110,201,543,38,339,417,936,253,232,156,26,50,720,111,39,440,257,1093,160,243,644,57,679,27,289,40,158,82,85,79,805,97,54,25,1575,40,361,114,802,184,19,211,20,2047,745,135,60,56,114,323,150,33,367,186,46,1569,99,100,122,43,444,691,970,35,412,43,193,3364,86,1208,283,222,87,97,36,3945,1658,85,243,69,603,11,93,958,27,83,34,189,39,13,269,49,61,42,35,82,214,246,30,34,76,27,55,81,118,410,266,25,7,36,1359,39,28,30,31,755,164,107,57,32,18,190,209,45,9,325,260,286,163,108,259,161,30,232,268,54,11,61,57,86,78,22,1547,113,48,54,67,77,2542,189,100,51,37,58,48,301,73,128,176,92,40,88,40,75,22,47,21,61,41,100,599,68,25,32,113,273,38,898,694,29,75,573,17,196,18,685,84,38,1766,282,107,75,186,51,86,524,40,110,46,341,45,28,92,82,131,416,835,573,1209,26,19,17,42,73,78,902,53,94,464,42,19,22,228,38,75,136,58,32,71,269,2866,407,49,145,39,28,131,90,26,259,3275,57,252,112,177,123,169,595,42,36,98,142,45,127,168,2318,46,188,16,14,115,227,109,433,2012,333,99,115,115,31,32,72,117,18,288,76,65,49,89,103,104,52,28,88,642,121,893,45,165,22,30,212,157,296,74,204,152,51,208,83,2448,113,206,845,98,180,954,559,47,71,94,847,185,51,45,64,223,735,92,41,602,386,404,282,154,168,38,72,57,44,731,286,790,22,348,46,60,41,113,10,53,89,57,437,70,46,170,32,24,41,122,100,57,41,92,20,111,113,3238,2163,76,27,328,1371,40,113,118,304,38,72,56,28,29,194,565,864,32,54,68,19,38,458,45,47,68,76,54,32,194,312,45,37,69,130,845,176,64,83,76,26,44,45,210,28,595,10,52,30,28,33,88,95,1671,4412,413,26,39,146,67,833,113,122,47,301,80,558,46,875,69,16,145,38,97,61,108,83,268,55,857,37,57,165,174,31,43,42,63,68,173,6,317,252,10,128,101,1943,375,74,22,669,19,59,86,399,70,67,933,962,29,51,42,62,48,29,916,568,17,41,33,870,50,58,94,35,80,949,81,40,318,47,110,43,179,780,64,737,1021,39,57,48,289,365,63,58,111,497,63,133,153,946,314,56,252,47,603,54,19,781,32,296,535,1390,210,73,643,55,28,24,79,50,227,329,103,40,19,346,241,56,47,22,130,969,87,975,124,458,116,313,201,801,27,306,289,420,114,78,1722,1061,104,2306,167,2456,735,191,65,74,18,34,71,136,362,46,25,3183,135,114,15,53,30,161,57,485,24,137,89,58,265,170,134,50,56,88,235,29,120,219,268,766,171,51,138,272,74,893,38,27,150,28,14,248,48,336,66,81,42,28,82,91,46,18,53,356,138,123,62,310,390,67,100,39,38,125,887,41,3138,22,651,18,30,197,86,232,196,768,67,883,17,782,43,53,411,1237,132,108,30,43,311,1637,43,90,68,38,2464,39,122,41,73,44,34,334,77,116,80,12,206,850,198,31,73,44,362,116,280,33,429,119,33,229,51,37,101,95,35,74,87,97,89,150,37,77,71,35,280,185,33,132,544,55,366,43,796,3931,57,199,34,55,142,72,1531,1400,132,27,154,468,70,121,15,56,141,106,34,180,50,55,78,41,104,75,325,697,765,85,59,4204,609,41,31,45,23,473,45,2241,50,40,138,516,101,68,51,26,100,87,105,544,185,123,33,34,41,403,20,103,551,893,165,278,28,282,115,272,65,59,511,18,272,39,203,26,152,138,394,161,348,204,32,144,49,105,96,1280,275,209,246,99,26,270,100,57,32,113,149,1129,73,55,211,698,18,21,2022,33,25,15,399,885,143,111,502,27,54,106,10,22,46,63,287,40,117,179,27,500,13,310,15,10,734,470,502,87,41,590,122,286,83,496,57,58,403,92,869,71,82,56,70,107,313,41,202,114,57,516,50,144,73,27,34,225,74,43,47,31,75,147,414,527,30,200,33,276,112,43,42,83,67,21,50,437,88,307,194,51,287,414,28,482,272,589,255,56,1533,23,19,49,23,19,138,84,205,116,32,1561,194,64,133,290,206,1220,79,37,94,42,118,52,326,17,481,278,389,255,523,152,67,29,34,27,83,455,24,392,109,36,98,52,333,25,54,53,30,208,36,49,57,72,1091,74,31,227,174,50,285,52,718,167,17,11,275,226,281,28,653,339,39,79,96,29,657,662,37,395,341,381,78,32,564,896,45,40,135,93,156,265,463,43,349,24,24,1095,286,286,128,288,22,216,6,633,152,651,540,78,52,70,339,201,30,69,17,80,356,512,137,46,45,65,104,650,30,73,13,308,28,3794,17,39,27,123,478,409,540,21,784,110,772,33,199,30,487,220,565,74,169,32,187,195,27,58,871,50,90,52,63,31,45,92,333,38,117,41,30,387,137,684,60,20,185,215,42,209,37,85,192,160,659,728,24,835,27,84,174,28,19,115,65,1873,35,43,252,47,73,36,39,86,674,43,803,18,35,47,366,55,60,228,118,51,37,59,39,313,81,102,39,93,107,13,88,112,63,80,126,1719,290,1517,12,101,30,1925,45,73,3644,1714,30,57,1237,133,158,475,59,47,88,95,657,36,147,150,126,165,147,60,115,38,329,2116,161,368,216,127,48,875,151,21,261,1757,34,607,166,118,409,1586,74,29,533,50,570,83,18,71,1397,28,857,491,31,36,181,308,148,73,43,30,197,117,24,332,753,76,67,136,215,164,128,74,174,79,40,735,89,39,31,269,1191,39,4127,54,47,443,32,14,145,139,27,343,145,638,27,40,463,282,45,101,32,281,51,66,43,29,333,70,195,55,24,38,32,208,24,65,88,230,69,44,134,279,98,1901,280,20,529,25,30,58,326,45,21,279,60,103,842,13,356,95,23,45,39,107,486,341,1252,18,13,62,209,92,103,179,32,19,99,29,74,21,990,26,288,56,332,159,42,638,24,1498,87,221,431,172,778,653,851,659,121,45,70,48,239,238,108,32,99,624,2476,16,62,28,113,146,23,43,346,51,132,165,48,27,227,57,80,281,319,74,340,54,147,83,51,33,388,78,42,183,54,259,110,1380,80,347,90,360,69,29,149,284,49,584,46,30,142,19,24,908,151,529,90,123,86,139,800,798,217,76,16,81,66,31,28,66,37,23,832,754,895,115,1052,2713,24,1197,58,31,27,157,91,671,377,256,934,60,119,227,100,36,27,90,49,81,380,87,427,89,419,60,53,103,386,45,117,76,350,38,50,46,19,35,359,60,2551,59,213,689,79,97,271,32,31,236,123,212,69,38,844,1909,335,56,391,60,61,30,125,26,98,29,83,1758,215,19,752,1056,108,106,276,84,30,642,193,90,52,223,443,27,41,274,109,394,134,208,1183,45,22,36,346,60,139,41,640,2724,44,30,28,195,195,20,39,861,31,967,38,76,26,29,82,71,347,85,27,3985,80,177,249,22,205,89,173,44,43,185,53,26,131,46,29,26,78,35,452,53,67,253,48,96,20,279,56,186,142,75,33,56,300,370,35,76,15,29,51,648,474,190,51,145,54,35,120,29,1197,121,37,38,587,19,41,86,12,10,99,33,93,110,1187,435,79,292,96,3059,193,396,635,47,41,64,47,273,31,161,1751,1031,74,248,53,450,646,49,1650,809,48,1628,33,684,30,10,118,135,80,33,45,1661,35,25,110,71,53,1082,1158,245,151,15,64,24,35,61,44,85,104,140,31,172,125,295,218,242,107,242,30,30,541,172,18315,121,92,65,100,477,43,76,3924,61,1289,123,38,118,130,56,41,43,57,379,56,75,294,64,30,766,308,27,95,46,139,86,60,372,28,28,81,571,46,196,35,793,965,980,389,319,32,1804,73,32,35,56,122,31,142,63,30,2187,25,37,414,64,40,162,33,121,263,128,86,726,48,31,67,48,333,443,95,21,31,33,31,27,2095,38,42,238,916,361,14,2315,35,44,65,49,157,63,28,358,30,81,131,89,34,169,785,271,98,43,59,51,131,530,65,45,34,91,32,21,191,47,130,570,464,39,1239,877,12,25,20,58,93,68,481,64,54,1864,127,82,43,50,127,18,797,123,964,45,49,82,35,41,55,145,34,15,63,1117,14,176,36,1890,36,81,233,418,34,25,112,35,73,30,402,148,50,963,24,199,70,998,61,194,41,61,84,40,5418,623,68,28,54,135,36,78,445,36,46,194,32,340,25,52,29,55,670,568,483,1317,91,156,86,932,22,67,562,37,156,35,55,29,55,950,500,52,46,123,41,32,278,36,162,83,579,608,22,14,184,16,213,25,43,135,68,24,362,173,757,194,443,58,253,23,48,418,157,3110,24,445,50,678,92,65,52,197,152,27,95,10,350,35,19,57,51,324,237,10,234,336,12,54,223,71,93,696,470,33,76,422,72,5326,67,1016,160,836,53,118,245,104,140,241,14,702,33,20,184,37,59,59,92,35,934,2855,143,92,70,471,31,201,400,25,18,90,56,149,57,59,42,100,206,50,81,46,502,122,562,357,94,907,60,888,45,28,104,150,21,101,231,50,261,368,65,44,75,145,56,13,50,74,20,148,72,82,29,344,43,250,537,84,134,120,45,86,201,536,288,36,264,25,36,1228,73,67,27,202,46,65,155,122,2951,38,29,80,195,42,289,193,40,31,154,540,221,124,38,37,144,102,62,46,74,21,273,48,90,88,331,54,55,41,41,222,149,27,24,30,76,169,809,19,21,611,230,150,41,94,90,47,22,108,596,43,92,65,49,93,52,553,47,201,282,16,20,633,461,617,91,254,29,594,77,218,102,701,28,36,78,29,211,65,111,33,25,69,19,58,23,57,72,29,76,172,72,279,33,952,182,399,131,67,764,827,467,61,146,34,3498,10,14,16,248,731,219,159,491,110,87,28,120,27,32,239,1735,1290,61,714,46,30,42,51,132,112,80,263,36,84,55,206,246,19,46,169,103,1389,610,56,275,164,99,184,152,42,2140,246,86,43,413,81,87,458,1328,48,75,531,55,421,611,51,17,105,126,39,23,285,714,689,64,110,41,268,617,173,1483,193,265,334,113,70,123,189,479,6113,215,62,30,624,39,43,85,39,180,94,76,88,3674,36,92,94,41,135,116,423,55,34,47,70,14,107,78,128,115,74,472,20,322,157,70,45,26,124,150,257,182,41,19,42,54,3802,34,40,438,172,333,61,45,523,73,874,742,84,419,107,31,69,36,60,70,182,198,47,44,37,206,48,65,36,75,605,272,59,76,47,992,22,69,30,18,30,50,16,50,614,28,137,42,40,91,40,68,113,308,78,48,60,103,264,53,83,45,163,75,12,48,59,239,56,192,14,36,320,39,18,79,566,49,121,728,511,178,50,84,47,81,37,512,42,82,165,43,53,46,41,85,48,1108,67,52,31,145,28,65,135,80,54,30,631,173,28,67,26,45,288,51,38,660,169,104,54,937,581,221,39,24,86,870,774,1014,112,143,42,83,26,74,75,786,64,98,255,34,134,53,210,19,1718,61,48,74,107,83,170,94,36,505,119,28,141,43,144,36,55,130,678,390,36,41,86,114,954,63,31,27,71,902,329,2799,42,43,28,135,52,62,40,45,104,29,63,623,356,166,111,274,492,237,257,89,248,132,426,138,1564,39,57,92,6,96,69,63,71,461,88,71,123,740,51,54,27,90,58,959,34,500,46,66,55,179,62,88,515,43,880,187,111,27,476,27,83,75,805,668,39,139,56,73,255,680,205,295,34,554,29,135,38,29,330,683,120,28,44,82,40,854,1875,28,12,82,112,24,33,39,110,869,87,489,290,40,177,223,60,137,50,55,40,45,128,293,329,190,102,90,170,35,151,33,296,128,143,79,34,91,114,199,753,266,46,323,49,3023,302,59,49,124,82,42,47,33,20,215,54,335,70,41,657,76,367,45,74,29,69,22,451,46,38,60,48,90,133,81,63,68,88,340,267,53,10,80,32,36,130,31,53,55,91,29,243,58,245,89,351,104,447,61,872,36,161,55,22,56,47,974,686,53,537,66,29,144,140,90,70,1619,24,77,171,87,65,75,288,549,710,142,30,32,39,245,124,629,72,30,108,53,99,18,39,247,120,79,222,60,79,240,70,100,82,345,122,276,438,33,24,815,90,57,35,71,47,31,35,22,345,26,79,37,413,210,118,79,101,667,483,62,489,155,1180,235,726,202,17,835,21,340,58,289,27,37,485,111,108,924,14,37,92,68,17,1078,78,101,1193,44,43,298,51,696,46,55,699,88,234,77,62,137,49,53,86,29,49,119,49,69,110,200,48,21,66,16,65,442,208,20,53,157,229,110,531,2487,681,39,90,1029,24,404,21,58,289,74,136,526,3647,396,211,187,55,598,690,69,1199,377,522,83,109,400,81,829,453,1512,41,37,229,391,29,286,349,684,24,20,35,195,23,55,43,43,13,189,171,484,263,998,111,55,21,16,434,545,98,29,79,31,50,27,12,65,179,131,556,26,91,1329,246,44,10,1908,55,1209,33,103,65,37,22,116,21,830,39,93,56,82,87,57,117,50,719,16,1104,29,17,43,92,225,47,76,619,45,47,174,146,63,1604,288,6,26,81,292,1421,195,21,195,130,14,97,687,12,78,119,223,46,105,227,1623,41,1548,44,80,71,108,551,73,554,16,39,145,28,690,366,29,254,996,31,309,135,25,57,197,126,418,73,69,29,14,12,111,32,97,41,95,116,40,64,130,99,167,40,118,70,466,101,557,88,13,28,36,43,27,133,182,33,88,360,599,842,22,70,54,621,278,17,12,157,176,24,89,366,205,231,146,3030,100,864,12,163,119,34,310,71,92,1478,298,12,66,43,1092,128,32,84,15,27,214,193,81,20,47,125,56,12,785,133,119,91,82,18,30,97,103,27,24,1081,561,112,41,329,65,48,83,61,476,2199,49,1441,288,17,119,71,26,171,82,8775,318,33,99,141,86,100,16,216,47,10,175,114,59,63,34,96,50,13,227,487,995,123,5,114,285,28,17,963,984,95,877,1349,475,768,163,78,69,216,47,113,69,74,97,19,28,26,959,282,326,86,70,44,298,38,12,42,226,131,107,974,113,131,84,103,308,110,878,18635,448,59,112,52,133,69,206,3141,583,288,54,1015,220,1923,1099,1550,72,837,68,988,13,64,66,23,2111,46,32,86,955,460,187,236,208,32,178,775,95,40,1837,22,58,339,763,96,28,12,85,237,212,13,28,49,45,223,87,92,134,30,7,82,218,260,10,33,256,113,254,104,1257,57,749,150,64,63,217,70,6,159,28,872,919,303,76,480,324,197,75,76,32,39,84,128,32,114,95,879,799,514,102,95,237,297,328,35,61,258,123,19,533,318,346,166,328,242,791,40,23,89,176,866,17,28,286,157,407,287,125,31,29,19,113,20,59,81,646,332,1474,73,26,36,72,39,942,30,288,181,70,504,280,217,603,221,36,12,432,80,89,21,1232,47,291,47,41,23,649,46,287,33,375,20,107,51,34,48,312,943,140,2173,514,26,14,33,740,798,85,45,782,107,57,83,52,185,464,57,89,60,879,47,62,22,174,343,85,613,1926,23,111,55,828,23,60,1150,172,189,36,138,21,404,26,680,77,18,126,611,28,1473,23,55,39,51,19,30,15,148,48,52,182,31,1417,503,66,511,15,25,35,128,43,378,442,49,33,520,85,165,10,32,334,75,52,103,207,56,1137,978,626,33,105,177,198,456,2013,72,57,23,226,844,644,375,238,93,1283,874,1105,58,54,87,154,37,62,111,560,841,30,550,151,323,142,883,247,59,78,398,360,13,57,62,740,993,41,136,392,123,12,129,120,407,142,110,131,283,113,67,365,62,59,153,228,51,66,219,892,107,243,99,1041,1224,1260,447,144,116,30,277,884,188,22,37,54,152,126,1539,117,645,154,32,885,11,104,92,36,668,64,95,84,304,1516,112,902,43,332,747,13,45,81,61,819,28,114,307,58,530,34,144,90,187,204,980,18,907,624,2458,36,47,105,185,197,45,285,209,352,325,28,107,45,167,12,87,253,103,76,62,88,153,94,408,280,117,15,46,31,85,233,150,140,545,341,2128,210,24,70,800,31,34,61,149,330,189,106,66,2190,93,109,146,833,63,358,987,715,25,227,328,64,313,210,502,175,841,696,92,385,168,63,59,79,55,166,171,46,13,541,102,34,82,32,204,45,28,931,34,245,71,916,40,140,172,49,25,165,17,24,928,288,188,51,3073,23,523,216,347,87,183,3056,65,132,840,869,40,79,92,61,301,81,280,77,255,97,204,184,181,26,21,329,94,161,78,105,88,49,25,764,113,307,113,84,704,569,39,59,114,493,150,106,622,278,59,15,13,146,821,20,166,762,95,89,142,52,76,39,162,550,43,133,64,127,284,19,1266,216,903,45,84,67,54,103,616,485,531,778,28,265,210,381,780,19,105,866,150,896,344,181,2739,71,114,172,106,48,125,88,53,129,292,27,690,213,22,34,63,147,842,139,759,24,14,670,443,95,200,267,57,15,143,162,78,1053,270,13,43,66,414,88,41,1047,34,99,11,54,774,285,46,467,114,141,326,78,72,56,136,31,111,71,454,331,36,22,266,1100,129,169,216,26,52,816,81,35,381,297,53,675,1153,111,1150,955,157,272,13,142,27,98,1124,59,265,127,296,944,74,56,2492,693,537,121,68,109,279,156,189,153,57,36,37,174,214,234,887,166,44,73,251,291,34,29,498,326,333,153,37,594,72,828,42,162,183,253,570,66,497,407,11,75,458,250,712,30,488,34,115,316,741,182,74,131,399,88,321,164,26,106,38,144,1843,60,8,30,178,95,75,30,47,149,1911,137,45,509,69,43,134,36,127,732,29,81,808,740,99,111,13,838,108,1442,208,270,148,92,57,21,207,90,113,162,562,101,124,371,492,37,88,233,2315,246,291,336,35,147,271,140,136,190,309,154,32,107,40,116,94,96,181,149,33,689,80,103,466,105,923,749,82,100,55,353,340,46,205,114,81,167,202,879,140,14,56,98,72,650,70,263,14,589,189,301,85,88,119,90,1545,885,99,93,341,390,30,137,29,29,11,77,200,265,786,95,311,372,855,93,28,62,78,246,72,42,617,900,36,425,62,335,279,92,124,858,32,499,187,51,445,157,134,22,545,589,59,36,1792,276,135,116,799,100,23,28,1776,171,56,2661,65,179,446,30,151,3441,585,654,411,21,100,6,983,211,204,423,632,439,119,38,29,77,1016,72,134,95,44,56,859,83,2040,118,1259,110,18,3220,63,815,757,161,192,29,1380,19516,120,781,327,962,4918,199,463,230,114,104,209,59,31,119,5181,337,392,878,46,26,45,112,373,49,25,462,127,51,556,294,56,1004,15,172,753,195,352,962,2540,10,625,14,417,29,22,864,27,330,130,56,676,341,79,243,327,52,76,45,410,281,1014,172,466,151,68,134,77,118,72,7409,25,409,33,29,90,42,29,251,43,30,2400,101,1068,133,36,11,380,680,948,215,88,894,222,318,209,148,906,65,48,815,33,536,28,193,338,780,111,63,18,109,20412,68,313,614,102,168,97,1085,422,313,516,209,120,108,508,110,365,66,86,499,267,58,71,109,555,238,301,717,16,957,212,120,2059,48,5084,133,48,932,20,106,101,79,106,37,45,1325,14,98,731,181,599,65,940,460,111,135,124,887,255,176,113,125,58,283,269,866,350,10,71,145,499,70,119,112,629,541,102,432,316,894,508,41,504,66,99,203,116,83,1285,78,16,78,92,252,494,28,67,739,88,66,112,847,42,837,18,76,33,77,121,354,101,183,10,66,48,34,91,182,20,82,192,364,137,73,285,760,92,705,89,271,257,615,294,29,527,70,100,132,255,947,463,685,280,29,271,13,286,54,273,112,131,64,18,155,602,64,353,187,14,67,350,107,56,193,828,675,182,115,2226,569,14,74,108,12,519,84,137,117,1163,440,38,84,79,10,56,481,33,30,515,924,105,691,12,274,118,89,8,223,63,195,126,783,1617,79,25,280,512,610,216,261,491,296,10366,690,971,353,84,334,395,31,186,235,844,72,54,61,129,59,263,774,19,162,164,55,37,1104,58,54,10,614,23,330,617,245,252,34,131,495,239,264,58,85,150,17080,54,217,408,845,26,145,124,131,82,2012,765,56,294,352,5855,151,721,665,313,315,315,132,13,78,115,215,136,78,22,74,762,32,88,268,80,945,85,77,231,229,63,256,775,3658,71,160,428,145,226,252,25,169,1067,40,1085,840,423,44,129,20,48,115,86,198,226,270,79,108,673,73,336,164,98,737,241,183,327,1788,568,147,28,373,68,1041,156,57,396,39,2823,39,1181,56,223,589,276,74,1216,52,51,106,564,103,124,823,684,136,60,137,311,1526,57,586,203,95,289,81,556,37,24,934,223,738,138,26,872,186,994,1372,133,26,422,13,26,756,10,275,68,320,101,59,35,44,389,389,833,300,189,282,34,553,2322,50,481,590,79,977,88,264,113,829,876,471,139,275,139,249,172,65,607,233,141,24,226,52,66,900,417,793,673,273,289,785,271,30,80,188,88,453,285,262,314,57,64,954,127,139,248,110,421,2635,325,81,69,1112,203,517,581,133,132,235,76,77,803,138,922,382,944,283,224,28,355,472,2197,73,932,731,2221,848,144,179,120,75,73,263,83,691,544,396,854,218,89,713,162,284,69,839,332,61,58,137,88,851,528,67,883,771,42,128,134,126,930,758,127,131,143,170,63,854,829,944,96,367,57,2066,966,1125,59,451,291,19,258,676,780,469,100,494,147,345,748,33,526,1937,84,829,750,3121,52,308,990,876,957,319,101,1935,294,451,395,50,709,3398,3675,147,61,26,166,116,31,2220,125,42,31,287,400,241,23,203,70,551,589,31,27,41,350,64,104,108,1805,97,247,29,199,602,288,596,864,1635,363,628,844,93,58,252,61,41,114,316,4442,131,103,31,215,77,852,65,752,48,65,240,106,285,34,305,265,219,24,14291,109,917,233,2543,104,671,257,63,488,367,208,32,115,137,471,67,67,165,197,256,192,597,216,111,488,468,221,138,44,253,600,103,546,4927,99,72,924,46,179,802,56,700,325,36,100,330,308,179,57,73,428,144,28,86,966,183,421,436,572,51,504,233,43,570,81,245,806,84,251,22,72,171,307,864,35,738,101,921,116,369,29,317,433,267,206,150,109,294,279,613,410,545,970,860,322,240,32,349,13,135,271,91,288,63,140,300,25,68,741,327,90,199,238,158,1608,462,72,94,2606,117,683,31,540,316,145,151,509,85,461,221,5988,263,184,90,507,129,23,345,41,2332,164,320,786,97,31,125,1037,78,43,96,4528,19,1240,70,262,1152,79,28,731,407,422,56,27,353,179,95,118,305,1046,606,56,766,292,41,304,263,124,222,51,133,133,51,228,69,99,213,1114,616,495,286,272,245,91,1344,78,183,483,29,88,192,273,713,275,55,326,495,77,187,1755,3499,101,328,144,4109,765,191,330,75,243,1894,937,42,302,24,982,55,47,788,25,300,868,326,190,109,26,312,120,63,115,384,275,92,38,795,664,246,992,28,24,351,71,32,172,37,255,70,280,25,105,948,58,90,210,216,37,2846,279,133,147,1387,31,129,102,85,318,134,72,31,312,92,97,774,122,158,171,1127,93,661,77,741,458,941,1056,287,323,89,812,1824,58,584,427,933,768,569,648,260,189,37,121,258,145,397,653,32,46,176,382,22,4818,260,888,15,135,117,94,96,1205,141,948,25,23,281,984,272,158,173,283,838,55,131,1563,25,778,246,66,879,98,385,443,776,112,843,697,59,124,559,265,40,21,1138,710,118,2904,212,374,99,439,73,106,552,69,828,32,326,209,297,326,530,168,59,1290,72,34,152,235,160,529,206,278,209,324,419,564,224,49,41,549,799,397,194,45,392,105,50,29,259,2484,789,546,168,42,139,195,516,312,47,23,115,396,604,163,436,59,954,234,900,104,822,209,221,17358,628,221,643,973,497,187,3812,305,109,997,255,988,266,793,60,140,285,26,62,1702,45,131,110,320,22,72,287,129,519,59,313,622,232,1140,101,326,267,181,213,21,260,2560,134,91,249,34,849,665,794,617,195,110,147,48,939,648,2348,40,205,1422,406,189,682,85,42,57,274,123,1193,543,943,577,207,251,28,668,47,77,93,538,164,109,234,926,203,134,959,857,175,124,87,1161,119,1226,291,499,688,36,231,2123,940,943,45,217,795,159,937,210,92,1152,162,298,746,306,114,466,846,64,162,574,85,94,967,54,43,657,477,54,256,83,279,106,77,371,1322,14,886,635,123,894,398,105,922,129,273,111,33,392,30,324,834,523,326,25,257,376,617,310,571,156,35,257,125,2009,507,2638,139,263,84,63,323,23,101,267,935,173,957,44,163,254,368,130,464,476,302,296,968,856,117,153,118,819,917,839,2348,98,59,407,150,776,224,1915,69,721,1760,447,57,666,84,99,110,36,402,723,123,89,343,203,44,522,255,34,41,234,128,60,335,584,256,267,1008,129,185,659,148,455,1431,274,942,1688,482,906,454,45,150,1725,2278,97,299,838,980,62,81,114,151,275,173,101,837,150,177,564,478,1248,90,956,848,282,653,43,544,205,44,663,137,735,31,69,717,401,694,66,62,492,22,1986,102,86,847,563,76,82,210,638,433,63,839,243,331,3855,876,49,170,11,80,186,93,11,3280,697,16261,41,1219,755,916,294,887,208,501,948,940,817,45,157,712,2326,44,257,242,95,335,183,2303,2336,510,492,124,341,781,1016,139,3140,53,76,215,128,801,815,273,311,1753,659,765,135,1806,251,633,633,51,674,209,496,81,2606,94,193,2243,599,35,259,593,923,163,113,1296,498,1426,401,257,102,33,512,306,430,367,55,437,76,415,844,146,780,205,361,237,780,60,873,752,813,103,330,688,68,217,1371,796,28,38,750,722,753,912,65,29,994,185,1715,37,226,86,414,218,853,202,165,328,1236,256,182,616,70,326,657,51,495,94,154,22,1317,247,676,935,967,868,28,883,701,73,15,974,666,630,1291,190,93,166,265,486,276,247,618,468,312,72,897,184,306,660,73,239,283,723,76,902,177,403,1152,801,604,41,138,770,129,23,1213,782,244,987,2431,32,924,190,177,545,5094,46,1400,259,54,382,310,128,104,124,123,325,825,302,107,24,698,65,174,562,206,2869,644,19462,78,112,286,32,426,780,24,138,96,3180,538,34,39,487,270,544,247,88,409,149,33,12,199,14747,133,827,705,327,975,998,786,51,297,628,509,149,199,400,259,350,701,319,2655,176,1004,400,247,111,75,75,485,118,1632,131,74,142,303,257,638,77,94,187,175,260,190,2830,256,45,3214,182,690,74,199,1095,2775,273,280,215,21,326,333,99,656,690,602,504,132,732,1289,137,660,491,42,74,45,485,71,128,1960,28,166,304,258,211,113,731,346,418,446,88,190,559,411,34,1375,1147,577,268,54,896,476,170,278,49,174,328,238,1047,179,126,447,657,100,962,148,662,784,244,491,121,1243,131,421,112,63,545,991,1994,559,23,124,134,105,264,450,1596,772,207,128,899,448,959,570,145,113,236,153,716,696,298,1137,54,663,535,311,330,157,195,13411,57,738,941,751,208,63,158,616,56,157,131,113,908,89,303,399,726,230,291,279,810,493,618,831,550,204,1518,863,575,821,206,417,853,495,915,36,50,122,634,2279,1203,1165,84,859,258,112,452,182,942,83,254,713,528,1495,783,104,711,111,90,601,85,112,58,42,238,195,653,80,421,181,198,948,425,523,219,562,188,542,87,762,794,359,12489,234,300,369,58,54,799,883,36,176,286,730,137,129,691,292,901,693,94,55,314,41,64,473,35,231,56,795,292,235,252,1316,6269,326,294,233,1163,1110,158,4315,302,907,534,737,150,283,91,460,288,320,51,480,91,225,5997,233,481,1417,646,201,1258,87,138,692,605,169,32,1823,655,349,625,56,983,1583,190,35,822,576,367,296,787,448,51,1522,698,971,203,178,903,195,510,878,1413,818,379,59,991,183,247,120,1430,254,481,62,606,94,272,112,998,198,53,213,551,322,631,462,263,154,298,74,526,1366,116,947,20,306,712,170,106,1252,111,122,258,211,607,688,577,140,709,610,119,697,41,749,276,461,1323,64,628,107,315,1495,246,857,239,189,327,799,492,53,642,80,387,160,112,294,150,270,689,4314,238,743,277,127,86,311,144,845,247,973,275,888,454,251,272,1172,320,743,101,660,165,670,112,3347,554,802,119,553,1248,1396,318,639,702,371,644,210,637,404,30,1428,349,781,339,888,44,74,404,296,86,296,189,362,818,372,897,69,301,4610,83,263,781,79,684,64,2129,1764,134,118,635,36,1102,208,1553,381,784,205,244,15,707,3396,323,44,22,750,1616,80,666,2272,462,401,284,368,195,58,54,228,409,1582,3445,324,791,398,915,346,791,27,40,629,934,410,797,425,1240,282,249,722,899,160,673,862,206,309,242,852,264,234,89,920,1289,358,39,80,960,536,421,315,229,161,70,36,278,46,203,158,134,741,1216,102,1015,115,878,355,734,191,271,63,1101,89,306,1022,784,112,630,902,113,593,296,863,77,234,588,770,117,37,308,326,406,1789,510,41,820,931,101,1074,718,764,1782,192,67,213,288,1018,165,1583,1566,376,277,15,114,711,215,755,327,285,1182,1397,769,2088,254,497,58,71,264,56,72,59,39,381,965,215,697,531,617,4528,936,868,266,486,163,311,504,208,89,564,811,803,603,443,1123,1614,739,335,393,3279,4833,285,309,389,265,22,68,777,67,364,287,386,1376,692,726,18,1513,641,308,306,164,275,469,880,62,498,432,827,22,690,624,1287,209,596,113,448,286,345,88,745,227,4454,752,842,193,263,478,744,775,43,904,303,118,459,2605,717,354,226,46,10,35,2014,684,360,196,186,1000,43,535,286,908,450,803,78,30,181,795,800,350,676,16,81,1503,406,2426,89,583,943,1306,330,173,925,609,124,976,119,39,23,194,23,183,141,108,277,349,208,810,403,72,24,941,748,654,174,2115,1834,770,164,689,764,19,313,5669,218,1588,132,212,933,629,121,148,849,266,1418,15665,328,610,346,815,170,211,211,159,904,309,454,778,151,170,932,380,557,389,210,484,576,198,900,716,287,85,165,863,31,583,338,223,335,447,958,269,163,865,597,705,236,316,60,777,1052,774,989,28,19,487,824,547,482,308,61,125,648,558,945,561,309,175,23,450,698,1902,160,150,256,764,604,93,731,1279,378,296,507,175,169,608,1030,35,974,398,682,3573,142,142,514,196,132,336,362,569,327,34,459,484,731,395,833,526,142,713,307,142,308,260,60,2362,142,113,124,155,931,12,257,55,18,389,81,294,227,890,332,80,68,38,280,568,499,471,261,439,387,826,69,58,258,668,475,75,331,589,170,91,1347,109,371,893,57,754,488,41,109,280,558,82,205,50,3717,802,38,50,48,261,382,878,224,1701,18947,325,467,2199,777,1226,171,63,130,328,440,112,199,396,94,258,237,291,235,45,347,313,925,212,288,184,503,416,809,92,107,954,305,146,871,674,46,59,991,255,104,280,443,829,10,286,40,8681,921,696,241,270,725,59,328,988,490,2350,362,101,37,106,389,543,966,879,116,908,13,408,491,725,374,219,283,165,275,93,935,88,219,308,895,32,52,794,332,700,467,259,5055,262,170,277,43,20,306,98,76,673,392,727,469,659,89,242,1733,1550,447,256,848,74,606,2408,48,257,31,153,230,169,132,964,279,941,503,2170,193,415,350,57,975,774,791,342,891,1537,276,71,287,203,5378,649,59,560,5698,681,917,311,511,2074,935,461,118,361,707,154,367,263,47,139,125,26,47,3724,276,835,497,297,572,52,3386,65,544,1627,76,717,22,34,123,781,197,606,653,169,46,235,247,144,1080,698,79,127,788,20,272,165,50,1131,40,290,101,813,20,1368,306,257,38,925,681,845,445,664,256,67,794,430,775,1210,118,57,707,869,284,2021,758,989,23,130,541,897,10,335,116,2012,808,735,836,741,707,845,435,112,631,415,422,261,166,269,1134,53,1411,356,1292,252,2014,36,192,274,487,62,145,23,629,928,1506,407,250,997,572,878,27,725,270,282,738,27,50,2092,334,525,197,254,355,59,470,39,53,251,71,606,448,646,146,19,963,713,297,506,1005,177,1422,188,752,733,508,142,781,180,527,622,249,173,89,999,253,1051,538,259,662,159,401,2125,68,3638,654,812,276,70,2982,221,107,845,268,3797,30,311,562,996,144,4967,804,438,75,313,30,3313,131,826,27,352,1017,946,729,1057,232,168,743,128,726,210,833,328,203,688,1098,1362,78,978,28,35,43,339,174,5345,649,169,822,1011,945,743,648,398,950,1799,4012,320,97,336,244,981,978,211,193,197,663,2782,20,154,58,257,950,389,302,414,349,248,963,839,211,48,52,367,456,405,161,24,161,48,575,44,60,1967,910,377,560,135,263,372,72,97,974,257,605,47,984,404,469,489,1348,283,277,917,252,641,629,446,2175,2318,3727,278,38,591,964,183,86,619,765,242,556,742,867,2200,368,43,269,665,445,445,6828,540,747,84,300,1561,81,1360,275,142,1245,274,52,464,870,834,312,157,486,366,284,743,454,55,634,861,3649,97,768,255,652,298,172,34,224,347,520,753,854,750,143,204,116,2882,485,269,275,1713,59,58,605,635,56,897,357,146,264,546,194,459,561,316,3578,254,1082,819,275,94,165,109,75,356,829,56,380,387,2934,2728,300,157,773,244,3020,72,1019,249,797,257,217,623,180,16,895,502,677,252,160,129,883,156,473,1577,638,812,924,52,978,89,55,534,630,212,360,206,75,30,1707,23,23,187,726,108,654,276,2624,41,89,492,410,500,653,471,67,412,135,331,359,860,51,767,850,936,869,259,79,816,313,530,44,253,602,55,67,2905,28,63,452,1153,706,730,220,651,15158,108,1036,687,466,8942,187,100,640,4271,274,284,865,2019,179,879,962,479,2508,18057,89,186,1138,2435,669,437,180,3127,57,273,227,1515,4008,428,1564,63,471,80,12342,1144,921,968,627,711,316,49,45,967,302,280,598,688,289,319,890,1877,900,858,77,932,992,86,571,299,91,889,796,541,42,81,195,1453,47,249,41,271,44,386,879,766,744,289,894,143,57,48,88,189,81,110,585,9829,463,820,916,191,2453,963,270,152,562,388,32,1365,2469,314,893,670,235,245,224,295,48,381,70,632,83,275,316,332,1055,91,47,32,174,923,61,233,935,391,831,581,447,2611,1109,90,715,465,1020,188,50,764,1198,55,59,882,65,151,1932,184,43,606,136,170,61,392,89,186,210,279,47,281,275,744,243,309,316,618,508,400,597,114,204,1175,287,549,97,952,877,899,905,953,30,407,45,154,149,276,169,101,288,238,926,808,413,96,983,318,459,720,252,413,115,162,99,373,1406,807,215,1865,760,36,1642,479,54,911,1888,205,132,134,182,320,1383,822,259,254,73,47,111,37,241,25,51,1539,566,3543,429,542,726,253,23,246,798,2391,366,63,730,245,792,113,3341,173,20602,165,438,122,660,335,249,36,61,212,453,185,308,927,124,68,86,854,258,697,418,157,13,492,1172,378,74,39,571,547,191,2750,718,34,230,657,546,777,1410,944,298,3923,130,723,677,519,1175,59,265,263,22,14,127,72,1101,8230,317,273,1033,3812,64,943,183,41,294,393,1028,331,264,25,317,613,161,883,3285,432,874,119,97,510,777,506,373,1060,415,2033,674,301,1186,871,822,465,90,466,116,831,125,288,1456,32,305,184,3267,139,103,949,319,4057,939,752,629,658,791,281,507,814,287,207,257,264,76,629,59,32,595,241,195,21,470,1845,12,511,408,775,429,941,752,171,1958,608,849,565,185,647,862,870,1969,1668,519,150,847,869,155,14571,196,40,389,687,384,218,483,799,108,734,49,808,717,723,518,211,1075,480,538,320,494,3801,452,38,745,88,48,579,135,537,112,332,104,135,330,666,583,952,35,2932,470,630,194,3522,105,698,29,950,796,430,195,609,690,72,9011,360,356,258,509,3805,8992,329,181,41,94,141,833,252,607,2938,109,180,949,699,66,50,124,923,1050,780,2072,57,148,207,562,47,289,240,278,421,443,2709,958,66,485,284,301,534,802,95,739,1913,114,612,612,173,1329,855,106,659,109,288,107,275,454,821,72,925,240,782,585,845,61,757,94,92,637,999,338,778,116,587,312,794,751,763,251,59,261,726,31,265,114,775,755,590,211,17,499,4123,98,308,877,46,763,175,776,170,291,470,95,101,4927,110,242,935,239,398,865,119,165,893,140,851,945,158,860,466,278,74,163,768,228,952,951,905,770,4326,229,154,288,1691,206,1707,287,2517,107,733,124,834,46,96,553,705,620,2943,250,191,689,901,200,1652,349,2064,30,970,252,895,1210,510,371,248,329,917,270,423,267,2018,947,424,827,513,332,630,926,410,654,133,4911,906,128,142,98,546,850,674,143,284,13,649,349,745,309,283,282,67,822,776,89,84,200,1482,156,52,280,844,23,4111,8515,553,399,72,847,85,372,580,80,977,1939,11,937,3902,595,836,215,580,454,829,546,621,180,180,288,23,285,400,39,267,350,276,802,306,996,202,302,712,302,819,94,2070,184,886,222,2253],"labelCounts":{"GEO":21445,"NAME":21218,"ORG":23420},"entityBox":{"GEO":{"min":2,"q1":7.0,"median":10,"q3":13.0,"max":68,"whiskerLo":2,"whiskerHi":22,"outliers":[23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,32,32,32,32,32,32,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,34,34,35,37,37,37,38,38,38,38,39,39,40,40,41,41,48,48,51,51,51,51,54,58,68],"n":21445},"NAME":{"min":1,"q1":5.0,"median":8.0,"q3":13.0,"max":74,"whiskerLo":1,"whiskerHi":25,"outliers":[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,31,31,31,31,31,31,31,31,31,31,31,31,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,35,35,35,35,36,36,36,36,36,37,37,37,37,37,38,38,39,46,48,50,61,74],"n":21218},"ORG":{"min":1,"q1":7.0,"median":9.0,"q3":16.0,"max":200,"whiskerLo":1,"whiskerHi":29,"outliers":[30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,35,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,46,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,53,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,55,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,56,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,58,58,58,58,58,58,58,58,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,60,60,60,60,60,60,60,60,60,60,60,61,61,61,61,61,61,61,61,61,61,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,64,64,64,64,64,64,64,64,65,65,65,65,65,65,65,65,65,65,65,65,65,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,66,67,67,67,67,67,67,67,67,67,67,67,67,68,68,68,68,69,69,69,69,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,72,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,73,74,74,74,74,74,74,74,74,74,74,74,74,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,76,76,76,76,77,77,77,77,77,77,77,77,77,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,79,79,79,79,79,79,79,80,80,80,80,80,80,80,80,80,80,80,81,81,81,81,82,82,82,82,82,82,82,83,84,84,84,84,84,85,85,85,85,86,86,86,87,87,87,88,88,88,88,88,89,89,89,89,90,91,92,92,93,93,94,94,95,97,98,98,98,98,99,99,100,100,102,102,103,103,104,104,104,107,107,107,109,110,111,111,111,112,116,118,118,121,121,123,133,136,138,146,159,198,200],"n":23420}},"scriptMix":{"onlyCyrillic":2207,"onlyLatin":7840,"both":2952,"neither":1,"otherAlphabet":129}},"dev":{"totalDocs":1500,"totalEntities":7698,"docsWithoutEntities":275,"uniqueChars":338,"charFreq":[{"char":" ","count":89598,"alphabet":"other"},{"char":"a","count":61024,"alphabet":"latin"},{"char":"i","count":52075,"alphabet":"latin"},{"char":"n","count":26561,"alphabet":"latin"},{"char":"o","count":26429,"alphabet":"latin"},{"char":"l","count":23342,"alphabet":"latin"},{"char":"r","count":23321,"alphabet":"latin"},{"char":"а","count":22300,"alphabet":"cyrillic"},{"char":"и","count":19984,"alphabet":"cyrillic"},{"char":"s","count":19191,"alphabet":"latin"},{"char":"t","count":17595,"alphabet":"latin"},{"char":"h","count":16508,"alphabet":"latin"},{"char":"d","count":15309,"alphabet":"latin"},{"char":"m","count":14377,"alphabet":"latin"},{"char":"u","count":12995,"alphabet":"latin"},{"char":"g","count":12984,"alphabet":"latin"},{"char":"e","count":12593,"alphabet":"latin"},{"char":"b","count":11602,"alphabet":"latin"},{"char":"k","count":11283,"alphabet":"latin"},{"char":"y","count":10760,"alphabet":"latin"},{"char":"н","count":10199,"alphabet":"cyrillic"},{"char":"л","count":9280,"alphabet":"cyrillic"},{"char":"р","count":9211,"alphabet":"cyrillic"},{"char":"о","count":8191,"alphabet":"cyrillic"},{"char":"q","count":7749,"alphabet":"latin"},{"char":"т","count":6722,"alphabet":"cyrillic"},{"char":"z","count":6525,"alphabet":"latin"},{"char":".","count":6237,"alphabet":"other"},{"char":"v","count":5937,"alphabet":"latin"},{"char":"д","count":5727,"alphabet":"cyrillic"},{"char":"ʻ","count":5524,"alphabet":"other"},{"char":"м","count":5518,"alphabet":"cyrillic"},{"char":"у","count":5057,"alphabet":"cyrillic"},{"char":"к","count":4832,"alphabet":"cyrillic"},{"char":",","count":4520,"alphabet":"other"},{"char":"г","count":4462,"alphabet":"cyrillic"},{"char":"б","count":4444,"alphabet":"cyrillic"},{"char":"c","count":4442,"alphabet":"latin"},{"char":"с","count":4179,"alphabet":"cyrillic"},{"char":"е","count":3439,"alphabet":"cyrillic"}],"textLengths":[68,46,1107,1784,26,50,53,19,18,26,54,36,42,40,412,31,51,14,480,69,3558,65,56,101,757,40,308,156,59,25,40,31,240,32,32,165,245,53,34,518,46,245,21,701,61,33,232,45,69,56,38,42,2034,50,28,36,98,897,129,18,56,41,386,107,40,26,36,47,48,187,51,53,69,51,61,42,58,49,76,49,34,11508,1373,205,58,90,69,79,153,91,173,13,1657,93,69,32,740,274,31,25,134,592,28,151,39,25,453,32,167,12,674,38,31,30,753,124,74,62,71,32,30,54,38,30,74,64,51,33,66,176,51,57,237,59,32,17,235,349,30,57,497,72,13,23,136,29,31,26,24,153,93,30,1860,286,39,1733,4717,42,1006,48,409,1310,107,36,55,1549,41,259,1134,1375,110,28,191,48,930,229,40,785,42,513,289,1153,66,1013,52,28,707,298,3123,259,27,59,267,185,2061,721,1276,6828,200,62,59,1475,19,60,33,594,30,2007,282,33,225,579,1573,126,350,638,28,373,176,96,27,142,2828,328,935,78,258,255,598,37,40,160,44,1356,59,289,29,504,26,167,594,346,1698,231,152,1136,33,3332,286,41,66,94,1030,26,47,261,2913,74,38,6181,41,364,11,70,32,149,263,1581,10,130,89,47,49,32,75,256,570,214,1875,79,702,72,18,27,24,2536,587,83,754,84,29,106,23,26,287,4302,1305,1015,31,33,52,35,59,853,52,172,1286,366,85,1518,900,30,9216,21,1062,544,994,74,222,136,914,31,249,2772,55,494,243,215,158,1650,566,1181,794,200,557,999,177,1262,970,827,31,214,27,68,53,1874,12,60,852,183,66,18,162,165,30,282,403,763,635,17,123,47,1605,1538,912,1080,4089,123,161,690,23,22,52,1514,110,692,2861,38,1714,1174,260,771,36,2935,24,255,86,131,1528,2814,515,54,320,478,131,27,208,63,643,382,3759,1407,9128,61,57,305,502,271,1056,2130,22,473,56,334,76,38,87,1825,31,18,1185,749,3406,3008,1092,40,1379,600,109,3223,1353,99,131,65,892,3086,2860,564,43,124,830,600,1101,1781,124,529,31,480,502,1768,238,233,169,277,68,14781,671,200,139,7314,114,16,27,85,384,4252,49,41,106,389,31,48,398,29,98,138,108,73,585,29,34,40,187,190,1645,73,1842,10187,82,55,202,60,261,74,878,1502,924,278,24,145,144,32,157,48,189,68,82,33,87,158,735,296,141,248,14,836,120,28,133,503,269,402,68,68,202,51,45,49,365,34,37,255,1116,226,190,381,502,366,37,28,69,277,53,142,89,117,42,271,34,24,1667,45,306,83,94,36,464,29,158,54,193,430,546,167,84,520,374,89,553,221,269,328,469,230,318,317,28,50,242,26,35,108,74,104,26,218,651,491,77,24,33,60,569,666,36,50,821,38,60,59,283,199,51,85,510,173,43,66,35,45,332,84,170,51,31,124,55,118,199,591,38,27,3379,61,119,232,1027,66,67,234,222,222,684,35,229,481,54,70,33,38,34,2030,513,213,79,191,76,45,1001,494,121,86,35,100,21,58,486,54,112,46,76,838,168,68,138,2460,148,165,132,91,537,84,55,129,76,146,51,60,591,86,102,46,98,388,56,15,56,61,326,240,53,381,91,42,34,467,24,47,130,199,82,103,96,154,555,93,122,230,86,68,35,58,217,91,38,310,47,18,119,655,209,303,89,762,138,603,25,215,37,68,24,54,51,30,48,155,85,840,32,22,20,46,26,65,655,224,54,42,241,31,50,336,40,17,41,159,65,177,41,37,30,36,18,925,63,30,251,11,135,588,33,46,113,12,53,40,84,57,132,281,226,978,52,1911,65,135,49,31,33,135,848,1099,68,2600,31,63,226,44,57,198,35,86,20,114,252,32,307,145,76,90,543,28,12,355,33,47,72,45,76,31,333,355,690,695,70,23,53,41,1251,576,67,51,44,164,51,88,382,5,419,270,56,1405,52,286,53,380,62,5,486,14,751,814,32,297,644,32,70,58,121,1639,915,216,30,256,176,117,92,30,754,15,81,473,69,48,767,11,164,367,496,15,7,116,42,189,430,91,336,83,716,19,34,236,9,51,215,73,1690,1763,1477,133,327,195,48,442,14,14,769,17,37,17,349,60,196,685,573,51,82,1718,26,631,59,28,89,74,365,1047,242,83,142,172,44,1581,2752,944,134,22,91,323,19,48,86,32,98,95,603,1366,63,192,803,110,80,36,370,375,28,56,66,13,343,265,36,223,14,185,113,7452,161,400,585,275,135,11,123,204,625,54,309,72,711,128,857,37,1905,69,71,1361,30,74,1246,116,128,86,1614,46,47,402,134,5,336,120,197,677,171,152,161,875,281,102,36,281,66,776,33,7639,578,168,1933,552,52,112,198,367,999,111,166,134,298,145,459,268,79,2185,90,5,774,311,350,324,125,505,891,1299,146,65,15,310,396,420,41,81,149,674,792,725,377,860,188,51,303,250,74,83,46,807,125,72,906,627,95,588,85,275,2221,102,787,140,299,88,319,244,203,91,958,261,502,291,1978,1203,951,134,504,44,290,186,90,841,23,291,73,1111,28,30,174,62,732,55,103,60,242,195,118,112,491,760,285,68,109,146,197,1087,40,359,791,293,896,171,30,2108,172,813,100,553,303,449,23,308,68,212,91,247,541,256,570,44,802,840,43,28,260,254,800,437,316,104,242,280,174,35,384,582,47,419,909,1034,392,124,610,20,840,128,547,613,90,224,112,75,949,106,83,73,483,93,631,198,112,25,927,579,493,2396,366,698,2725,863,471,166,818,67,748,281,117,250,49,206,379,54,291,352,378,814,2787,46,1155,103,928,57,912,13,303,199,797,305,26,116,226,296,950,369,280,18975,175,99,285,115,878,68,878,139,331,756,135,70,1693,281,693,898,64,122,113,719,469,150,409,153,244,26,591,271,53,188,390,64,611,132,1490,304,262,201,20,2686,869,659,937,576,312,290,104,609,289,64,814,454,258,587,60,880,103,431,344,275,100,197,1458,289,108,858,107,326,786,524,471,848,764,355,339,58,647,320,177,38,107,286,68,519,294,317,713,1409,966,551,190,40,626,58,286,328,4716,78,325,49,164,344,946,684,744,591,891,113,467,322,767,210,1697,292,289,140,895,24,820,85,845,641,16,176,231,415,71,944,229,189,765,313,992,63,1358,879,197,911,683,153,83,188,883,66,84,945,353,509,181,44,269,523,29,156,2255,639,1783,1962,153,57,320,690,341,173,22,340,809,23,4070,630,983,108,380,247,2140,370,588,283,611,156,264,39,701,413,63,377,292,808,72,895,974,108,949,490,351,758,229,289,975,1862,1356,883,886,661,562,1826,316,40,239,643,891,157,300,474,725,916,672,98,258,1956,361,232,209,170,4276,678,83,852,614,31,3433,291,26,888,785,30,1009,36,477,307,563,2904,37,1463,209,255,79,297,277,50,958,588,96,104,545,3133,891,265,128,610,291,279,376,597,168,696,2344,243,222,10],"labelCounts":{"GEO":2720,"NAME":2319,"ORG":2659},"entityBox":{"GEO":{"min":2,"q1":7.0,"median":9.0,"q3":13.0,"max":43,"whiskerLo":2,"whiskerHi":22,"outliers":[23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,26,26,26,26,26,27,27,27,27,27,27,27,28,29,29,29,29,29,29,30,30,30,31,31,31,32,33,33,35,36,38,43],"n":2720},"NAME":{"min":2,"q1":6.0,"median":10,"q3":15.0,"max":42,"whiskerLo":2,"whiskerHi":28,"outliers":[29,29,29,29,29,29,29,30,30,30,30,30,30,30,30,30,31,31,31,31,32,32,33,33,33,34,34,35,36,38,40,42],"n":2319},"ORG":{"min":1,"q1":7.0,"median":10,"q3":17.0,"max":111,"whiskerLo":1,"whiskerHi":32,"outliers":[33,33,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,35,35,35,35,35,35,35,35,36,36,36,36,36,36,36,36,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38,38,38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,40,40,40,40,40,40,41,41,41,41,41,41,41,41,41,41,41,41,41,41,42,42,42,42,42,42,43,43,43,43,43,43,43,43,43,43,43,44,44,44,44,44,44,44,44,44,44,44,44,44,44,45,45,45,45,45,45,45,45,45,46,46,46,46,46,46,46,47,47,47,47,47,47,48,48,48,48,48,48,48,48,48,48,49,49,49,49,49,49,49,50,50,50,50,50,51,51,51,51,52,52,52,52,52,53,53,53,55,56,56,57,58,58,60,60,61,61,62,62,62,63,65,65,66,66,66,67,67,68,69,69,70,70,72,73,73,73,73,73,74,75,77,78,80,80,82,82,83,92,98,105,107,111],"n":2659}},"scriptMix":{"onlyCyrillic":272,"onlyLatin":892,"both":336,"neither":0,"otherAlphabet":11}}}</script>
+<script id="model-stats" type="application/json">[{"model":"bertbek-ner-uznews","modelId":"elmurod1202/bertbek-ner-uznews","backend":"Uzbek NER checkpoint","microF1":0.3046066042,"macroF1":0.2998572131,"orgF1":0.2154248366,"nameF1":0.3162964945,"geoF1":0.3678503083,"precision":0.4090212393,"recall":0.2426604313,"seconds":65.5351362,"docsPerSecond":22.88848528,"vram":430.91,"invalid":0},{"model":"gliner-multi-v2.1","modelId":"urchade/gliner_multi-v2.1","backend":"GLiNER zero-shot","microF1":0.6425120773,"macroF1":0.6418243842,"orgF1":0.6164860681,"nameF1":0.6637168142,"geoF1":0.6452702703,"precision":0.6139914773,"recall":0.6738113796,"seconds":142.52709,"docsPerSecond":10.52431506,"vram":1187.49,"invalid":0},{"model":"gliner2-multi-v1","modelId":"fastino/gliner2-multi-v1","backend":"GLiNER2 extractor","microF1":0.6388973222,"macroF1":0.6396668669,"orgF1":0.5898305085,"nameF1":0.6782740348,"geoF1":0.6508960573,"precision":0.5998175807,"recall":0.683424266,"seconds":179.1382784,"docsPerSecond":8.37341976,"vram":1258.94,"invalid":2},{"model":"gliner2.5-multi-v1","modelId":"fastino/gliner2.5-multi-v1","backend":"GLiNER2.5 boundary","microF1":0.639820167,"macroF1":0.6393946455,"orgF1":0.5782326314,"nameF1":0.6880217434,"geoF1":0.6519295616,"precision":0.6327489837,"recall":0.6470511821,"seconds":113.142104,"docsPerSecond":13.25766402,"vram":1463.56,"invalid":1},{"model":"xlm-roberta-base-ner-hrl","modelId":"Davlan/xlm-roberta-base-ner-hrl","backend":"XLM-R multilingual NER","microF1":0.4016410837,"macroF1":0.4018244244,"orgF1":0.3762852767,"nameF1":0.4468770122,"geoF1":0.3823109843,"precision":0.4409069731,"recall":0.3687970902,"seconds":69.3069843,"docsPerSecond":21.6428404,"vram":1074.89,"invalid":0}]</script>
+<script id="augmentation-stats" type="application/json">[
+{"id":"baseline","name":"Baseline","short":"Baseline","note":"13 000 train","trainRecords":13000,"microF1":0.6553,"microPrecision":0.7627,"microRecall":0.5744,"macroF1":0.6518,"orgF1":0.6478,"nameF1":0.6062,"geoF1":0.7015},
+{"id":"normalize","name":"+ Нормализация апострофов","short":"+Норм.","note":"13 000 train","trainRecords":13000,"microF1":0.6542,"microPrecision":0.7687,"microRecall":0.5694,"macroF1":0.6512,"orgF1":0.6401,"nameF1":0.6123,"geoF1":0.7011},
+{"id":"translit","name":"+ Транслитерация (на норм. базе)","short":"+Транслит.","note":"23 047 train","trainRecords":23047,"microF1":0.6718,"microPrecision":0.7970,"microRecall":0.5805,"macroF1":0.6686,"orgF1":0.6531,"nameF1":0.6274,"geoF1":0.7252},
+{"id":"external","name":"+ Внешний корпус (Kaggle courpusNER2015)","short":"+Корпус","note":"24 625 train","trainRecords":24625,"microF1":0.6660,"microPrecision":0.7775,"microRecall":0.5825,"macroF1":0.6634,"orgF1":0.6483,"nameF1":0.6267,"geoF1":0.7151},
+{"id":"synthetic","name":"+ Аугментация опечаток","short":"+Опечатки","note":"26 000 train","trainRecords":26000,"microF1":0.6445,"microPrecision":0.7519,"microRecall":0.5640,"macroF1":0.6424,"orgF1":0.6187,"nameF1":0.6094,"geoF1":0.6992},
+{"id":"clean","name":"− Чистка train (ALL-CAPS/растянутые/короткие)","short":"−Шум","note":"11 733 train","trainRecords":11733,"microF1":0.6533,"microPrecision":0.7550,"microRecall":0.5757,"macroF1":0.6499,"orgF1":0.6368,"nameF1":0.6086,"geoF1":0.7044}
+]</script>
+<script id="cascade-stats" type="application/json">[
+{"id":"pooled","name":"Pooled (совместно)","microF1":0.6660,"microPrecision":0.7775,"microRecall":0.5825,"orgF1":0.6483,"nameF1":0.6267,"geoF1":0.7151},
+{"id":"cascaded","name":"Cascaded (каскадно, 3+3 эпохи)","microF1":0.6570,"microPrecision":0.7591,"microRecall":0.5791,"orgF1":0.6433,"nameF1":0.6175,"geoF1":0.7017}
+]</script>
+<script>
+(function(){
+  "use strict";
+  const NS = "http://www.w3.org/2000/svg";
+  const DATA = JSON.parse(document.getElementById("dashboard-data").textContent);
+  const LABELS = ["GEO","NAME","ORG"];
+  const LABEL_RU = {GEO:"Гео", NAME:"Имя", ORG:"Организация"};
+  const ALPHA_RU = {latin:"Латиница", cyrillic:"Кириллица", other:"Прочие"};
+
+  function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function labelColor(l){ return cssVar("--" + l.toLowerCase()); }
+  function alphaColor(a){ return a === "latin" ? cssVar("--latin") : a === "cyrillic" ? cssVar("--cyr") : cssVar("--other"); }
+  function fmt(n){ return Math.round(n).toLocaleString("ru-RU"); }
+  function fmt1(n){ return n.toLocaleString("ru-RU", {maximumFractionDigits:1, minimumFractionDigits:1}); }
+  function fmtScore(n){ return Number(n).toFixed(2); }
+
+  function el(tag, attrs){
+    const e = document.createElementNS(NS, tag);
+    if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function text(tag_attrs, str, cls){
+    const t = el("text", tag_attrs);
+    if (cls) t.setAttribute("class", cls);
+    t.textContent = str;
+    return t;
+  }
+
+  // ---- tooltip ----
+  const tooltipEl = document.getElementById("tooltip");
+  function showTip(evt, title, rows){
+    tooltipEl.innerHTML = "";
+    const h = document.createElement("div");
+    h.className = "tt-title";
+    h.textContent = title;
+    tooltipEl.appendChild(h);
+    rows.forEach(function(r){
+      const row = document.createElement("div");
+      row.className = "tt-row";
+      const k = document.createElement("span");
+      k.textContent = r[0];
+      const v = document.createElement("span");
+      v.className = "v";
+      v.textContent = r[1];
+      row.appendChild(k); row.appendChild(v);
+      tooltipEl.appendChild(row);
+    });
+    tooltipEl.hidden = false;
+    positionTip(evt);
+  }
+  function positionTip(evt){
+    const pad = 14;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const rect = tooltipEl.getBoundingClientRect();
+    let x = evt.clientX + pad, y = evt.clientY + pad;
+    if (x + rect.width > vw - 8) x = evt.clientX - rect.width - pad;
+    if (y + rect.height > vh - 8) y = evt.clientY - rect.height - pad;
+    tooltipEl.style.left = Math.max(8, x) + "px";
+    tooltipEl.style.top = Math.max(8, y) + "px";
+  }
+  function hideTip(){ tooltipEl.hidden = true; }
+  function attachHover(node, title, rowsFn){
+    node.setAttribute("tabindex", "0");
+    const handler = function(e){ showTip(e, title, rowsFn()); };
+    node.addEventListener("pointerenter", handler);
+    node.addEventListener("pointermove", handler);
+    node.addEventListener("pointerleave", hideTip);
+    node.addEventListener("focus", function(){
+      const r = node.getBoundingClientRect();
+      showTip({clientX:r.right, clientY:r.top}, title, rowsFn());
+    });
+    node.addEventListener("blur", hideTip);
+  }
+
+  function niceMax(v){
+    if (v <= 0) return 1;
+    const p = Math.pow(10, Math.floor(Math.log10(v)));
+    const n = v / p;
+    let step;
+    if (n <= 1) step = 1; else if (n <= 2) step = 2; else if (n <= 5) step = 5; else step = 10;
+    return step * p;
+  }
+  function niceTicks(max, count){
+    const ticks = [];
+    for (let i = 0; i <= count; i++) ticks.push(Math.round((max * i / count) * 100) / 100);
+    return ticks;
+  }
+
+  function clearAll(){
+    ["char-chart","len-chart","label-chart","box-chart","noise-chart","char-legend","entity-legend"].forEach(function(id){
+      document.getElementById(id).innerHTML = "";
+    });
+  }
+
+  // ================= 1. character frequency =================
+  function renderCharLegend(){
+    const host = document.getElementById("char-legend");
+    [["latin","Латиница"],["cyrillic","Кириллица"],["other","Прочие символы"]].forEach(function(p){
+      const item = document.createElement("div");
+      item.className = "item";
+      const sw = document.createElement("span");
+      sw.className = "swatch";
+      sw.style.background = alphaColor(p[0]);
+      const lb = document.createElement("span");
+      lb.textContent = p[1];
+      item.appendChild(sw); item.appendChild(lb);
+      host.appendChild(item);
+    });
+  }
+
+  function renderCharChart(rows){
+    const container = document.getElementById("char-chart");
+    const rowH = 20, top = 6, bottom = 6;
+    const W = 720, labelW = 36, codeW = 74, gap = 10, valueW = 58;
+    const barX0 = labelW + codeW + gap;
+    const barMaxW = W - barX0 - valueW;
+    const H = top + bottom + rows.length * rowH;
+    const svg = el("svg", {viewBox: "0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"Частота символов по алфавитам"});
+    const maxCount = Math.max.apply(null, rows.map(function(r){ return r.count; }));
+    const logMax = Math.log10(maxCount);
+    const surface2Color = cssVar("--surface-2");
+
+    rows.forEach(function(r, i){
+      const y = top + i * rowH;
+      const barLen = Math.max(2, (Math.log10(r.count) / logMax) * barMaxW);
+      const color = alphaColor(r.alphabet);
+      const g = el("g", {class:"row"});
+
+      const glyphBg = el("rect", {x:0, y:y+2, width:labelW-6, height:rowH-4, rx:4, fill:surface2Color});
+      g.appendChild(glyphBg);
+      const glyph = r.char === " " ? "␠" : r.char === "\n" ? "\\n" : r.char === "\t" ? "\\t" : r.char;
+      g.appendChild(text({x:(labelW-6)/2, y:y+rowH/2+1, "text-anchor":"middle", "dominant-baseline":"middle"}, glyph, "mono-text"));
+
+      const codeHex = "U+" + r.char.codePointAt(0).toString(16).toUpperCase().padStart(4,"0");
+      g.appendChild(text({x:labelW+2, y:y+rowH/2+1, "dominant-baseline":"middle", "font-size":"10.5"}, codeHex, "mono-text axis-label"));
+
+      g.appendChild(el("rect", {x:barX0, y:y+3, width:barLen, height:rowH-8, rx:3, fill:color, class:"bar"}));
+      g.appendChild(text({x:barX0+barLen+7, y:y+rowH/2+1, "dominant-baseline":"middle", "font-size":"11.5"}, fmt(r.count), "value-label mono-text"));
+
+      const rowLabel = (r.char === " " ? "пробел" : glyph) + " · " + ALPHA_RU[r.alphabet];
+      attachHover(g, rowLabel, function(){ return [["Код", codeHex], ["Частота", fmt(r.count)]]; });
+      svg.appendChild(g);
+    });
+    container.appendChild(svg);
+
+    const table = document.getElementById("char-table");
+    table.innerHTML = "<thead><tr><th>Символ</th><th>Код</th><th>Алфавит</th><th>Частота</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    rows.forEach(function(r){
+      const tr = document.createElement("tr");
+      const c1 = document.createElement("td"); c1.className = "mono"; c1.textContent = r.char === " " ? "␠" : r.char;
+      const c2 = document.createElement("td"); c2.className = "mono"; c2.textContent = "U+" + r.char.codePointAt(0).toString(16).toUpperCase().padStart(4,"0");
+      const c3 = document.createElement("td"); c3.textContent = ALPHA_RU[r.alphabet];
+      const c4 = document.createElement("td"); c4.className = "num"; c4.textContent = fmt(r.count);
+      tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3); tr.appendChild(c4);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  // ================= 2. length histogram =================
+  function renderHistogram(lengths){
+    const container = document.getElementById("len-chart");
+    const minV = 1, maxV = Math.max.apply(null, lengths);
+    const nBins = 34;
+    const logMin = Math.log10(minV), logMax = Math.log10(maxV);
+    const edges = [];
+    for (let i = 0; i <= nBins; i++) edges.push(Math.pow(10, logMin + (logMax - logMin) * i / nBins));
+    const counts = new Array(nBins).fill(0);
+    lengths.forEach(function(v){
+      const vv = Math.max(v, minV);
+      let idx = Math.floor((Math.log10(vv) - logMin) / (logMax - logMin) * nBins);
+      if (idx >= nBins) idx = nBins - 1;
+      if (idx < 0) idx = 0;
+      counts[idx]++;
+    });
+    const maxCount = Math.max.apply(null, counts);
+    const yMax = niceMax(maxCount);
+
+    const W = 720, H = 300, mL = 46, mR = 10, mT = 12, mB = 30;
+    const plotW = W - mL - mR, plotH = H - mT - mB;
+    const svg = el("svg", {viewBox:"0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"Гистограмма длины текстов"});
+
+    const xPix = function(v){ return mL + (Math.log10(v) - logMin) / (logMax - logMin) * plotW; };
+    const yPix = function(c){ return mT + plotH - (c / yMax) * plotH; };
+    const accentColor = cssVar("--accent");
+
+    niceTicks(yMax, 4).forEach(function(t){
+      const y = yPix(t);
+      svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:y, y2:y, class:"gridline"}));
+      svg.appendChild(text({x:mL-8, y:y+3, "text-anchor":"end", "font-size":"11"}, fmt(t), "axis-label mono-text"));
+    });
+
+    let p = Math.ceil(logMin);
+    for (; p <= Math.floor(logMax) + 0.001; p++){
+      const v = Math.pow(10, p);
+      if (v < minV || v > maxV * 1.0001) continue;
+      const x = xPix(v);
+      svg.appendChild(text({x:x, y:H-mB+16, "text-anchor":"middle", "font-size":"11"}, p === 0 ? "1" : fmt(v), "axis-label mono-text"));
+    }
+    svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:H-mB, y2:H-mB, class:"baseline"}));
+
+    const tableRows = [];
+    for (let i = 0; i < nBins; i++){
+      const x0 = xPix(edges[i]), x1 = xPix(edges[i+1]);
+      const w = Math.max(0.6, x1 - x0 - 1);
+      const c = counts[i];
+      const g = el("g", {class:"bar-hit"});
+      g.appendChild(el("rect", {x:x0, y:yPix(c), width:w, height:Math.max(0, H-mB-yPix(c)), fill:accentColor, class:"bar", rx:"1.5"}));
+      const lo = Math.round(edges[i]), hi = Math.round(edges[i+1]);
+      const rangeLabel = lo + "–" + hi + " симв.";
+      attachHover(g, rangeLabel, function(){ return [["Примеров", fmt(c)]]; });
+      svg.appendChild(g);
+      if (c > 0) tableRows.push([lo, hi, c]);
+    }
+    container.appendChild(svg);
+
+    const table = document.getElementById("len-table");
+    table.innerHTML = "<thead><tr><th>От, симв.</th><th>До, симв.</th><th>Примеров</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    tableRows.forEach(function(r){
+      const tr = document.createElement("tr");
+      [r[0], r[1], r[2]].forEach(function(v, idx){
+        const td = document.createElement("td");
+        td.className = idx === 2 ? "num" : "num";
+        td.textContent = fmt(v);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  // ================= shared entity legend =================
+  function renderEntityLegend(){
+    const host = document.getElementById("entity-legend");
+    LABELS.forEach(function(l){
+      const item = document.createElement("div");
+      item.className = "item";
+      const sw = document.createElement("span");
+      sw.className = "swatch";
+      sw.style.background = labelColor(l);
+      const lb = document.createElement("span");
+      lb.textContent = l + " (" + LABEL_RU[l] + ")";
+      item.appendChild(sw); item.appendChild(lb);
+      host.appendChild(item);
+    });
+  }
+
+  // ================= 3a. label frequency bars =================
+  function renderLabelBars(labelCounts){
+    const container = document.getElementById("label-chart");
+    const W = 340, H = 260, mL = 40, mR = 10, mT = 16, mB = 30;
+    const plotW = W - mL - mR, plotH = H - mT - mB;
+    const svg = el("svg", {viewBox:"0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"Частота меток"});
+    const maxV = Math.max.apply(null, LABELS.map(function(l){ return labelCounts[l]; }));
+    const yMax = niceMax(maxV);
+    const yPix = function(v){ return mT + plotH - (v / yMax) * plotH; };
+
+    niceTicks(yMax, 4).forEach(function(t){
+      const y = yPix(t);
+      svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:y, y2:y, class:"gridline"}));
+      svg.appendChild(text({x:mL-8, y:y+3, "text-anchor":"end", "font-size":"10.5"}, fmt(t), "axis-label mono-text"));
+    });
+    svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:H-mB, y2:H-mB, class:"baseline"}));
+
+    const band = plotW / LABELS.length;
+    const barW = Math.min(30, band * 0.5);
+    const table = [];
+    LABELS.forEach(function(l, i){
+      const cx = mL + band * i + band/2;
+      const v = labelCounts[l];
+      const y = yPix(v);
+      const g = el("g", {class:"bar-hit"});
+      g.appendChild(el("rect", {x:cx-barW/2, y:y, width:barW, height:H-mB-y, rx:4, fill:labelColor(l), class:"bar"}));
+      g.appendChild(text({x:cx, y:y-6, "text-anchor":"middle", "font-size":"11.5"}, fmt(v), "value-label mono-text"));
+      g.appendChild(text({x:cx, y:H-mB+16, "text-anchor":"middle", "font-size":"12", "font-weight":"600"}, l));
+      attachHover(g, l + " · " + LABEL_RU[l], function(){ return [["Сущностей", fmt(v)]]; });
+      svg.appendChild(g);
+      table.push([l, v]);
+    });
+    container.appendChild(svg);
+
+    const totalEntities = LABELS.reduce(function(s,l){ return s + labelCounts[l]; }, 0);
+    const t = document.getElementById("label-table");
+    t.innerHTML = "<thead><tr><th>Метка</th><th>Сущностей</th><th>Доля</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    table.forEach(function(r){
+      const tr = document.createElement("tr");
+      const c1 = document.createElement("td"); c1.textContent = r[0] + " (" + LABEL_RU[r[0]] + ")";
+      const c2 = document.createElement("td"); c2.className = "num"; c2.textContent = fmt(r[1]);
+      const c3 = document.createElement("td"); c3.className = "num"; c3.textContent = fmt1(r[1]/totalEntities*100) + "%";
+      tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3);
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+  }
+
+  // ================= 3b. entity length boxplot =================
+  function renderBoxplot(entityBox){
+    const container = document.getElementById("box-chart");
+    const W = 340, H = 260, mL = 40, mR = 10, mT = 16, mB = 30;
+    const plotW = W - mL - mR, plotH = H - mT - mB;
+    const svg = el("svg", {viewBox:"0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"Длина спанов сущностей по меткам"});
+    const maxV = Math.max.apply(null, LABELS.map(function(l){ return entityBox[l].max; }));
+    const yMax = niceMax(maxV);
+    const yPix = function(v){ return mT + plotH - (v / yMax) * plotH; };
+
+    niceTicks(yMax, 4).forEach(function(t){
+      const y = yPix(t);
+      svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:y, y2:y, class:"gridline"}));
+      svg.appendChild(text({x:mL-8, y:y+3, "text-anchor":"end", "font-size":"10.5"}, fmt(t), "axis-label mono-text"));
+    });
+    svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:H-mB, y2:H-mB, class:"baseline"}));
+
+    const band = plotW / LABELS.length;
+    const boxW = Math.min(38, band * 0.5);
+    const inkMutedColor = cssVar("--ink-muted");
+    const inkColor = cssVar("--ink");
+    const table = [];
+    LABELS.forEach(function(l, i){
+      const cx = mL + band * i + band/2;
+      const b = entityBox[l];
+      const color = labelColor(l);
+      const g = el("g", {class:"box-hit"});
+
+      const sampled = (function(){
+        if (b.outliers.length <= 160) return b.outliers;
+        const step = Math.ceil(b.outliers.length / 160);
+        return b.outliers.filter(function(_, idx){ return idx % step === 0; });
+      })();
+      sampled.forEach(function(v){
+        g.appendChild(el("circle", {cx:cx, cy:yPix(v), r:1.6, fill:color, opacity:"0.35"}));
+      });
+
+      g.appendChild(el("line", {x1:cx, x2:cx, y1:yPix(b.whiskerLo), y2:yPix(b.q1), stroke:inkMutedColor, "stroke-width":"1"}));
+      g.appendChild(el("line", {x1:cx, x2:cx, y1:yPix(b.q3), y2:yPix(b.whiskerHi), stroke:inkMutedColor, "stroke-width":"1"}));
+      g.appendChild(el("line", {x1:cx-8, x2:cx+8, y1:yPix(b.whiskerLo), y2:yPix(b.whiskerLo), stroke:inkMutedColor, "stroke-width":"1"}));
+      g.appendChild(el("line", {x1:cx-8, x2:cx+8, y1:yPix(b.whiskerHi), y2:yPix(b.whiskerHi), stroke:inkMutedColor, "stroke-width":"1"}));
+
+      g.appendChild(el("rect", {x:cx-boxW/2, y:yPix(b.q3), width:boxW, height:Math.max(1, yPix(b.q1)-yPix(b.q3)), fill:color, "fill-opacity":"0.32", stroke:color, "stroke-width":"1.3", class:"box"}));
+      g.appendChild(el("line", {x1:cx-boxW/2, x2:cx+boxW/2, y1:yPix(b.median), y2:yPix(b.median), stroke:inkColor, "stroke-width":"1.8"}));
+
+      g.appendChild(text({x:cx, y:H-mB+16, "text-anchor":"middle", "font-size":"12", "font-weight":"600"}, l));
+      attachHover(g, l + " · длина спана", function(){ return [
+        ["Медиана", fmt(b.median)], ["Q1–Q3", fmt(b.q1)+"–"+fmt(b.q3)],
+        ["Мин–Макс", fmt(b.min)+"–"+fmt(b.max)], ["N", fmt(b.n)],
+      ]; });
+      svg.appendChild(g);
+      table.push([l, b]);
+    });
+    container.appendChild(svg);
+
+    const t = document.getElementById("box-table");
+    t.innerHTML = "<thead><tr><th>Метка</th><th>Мин</th><th>Q1</th><th>Медиана</th><th>Q3</th><th>Макс</th><th>N</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    table.forEach(function(r){
+      const b = r[1];
+      const tr = document.createElement("tr");
+      const c0 = document.createElement("td"); c0.textContent = r[0];
+      tr.appendChild(c0);
+      [b.min, b.q1, b.median, b.q3, b.max, b.n].forEach(function(v){
+        const td = document.createElement("td"); td.className = "num"; td.textContent = fmt(v);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+  }
+
+  // ================= 4. noise breakdown =================
+  function renderNoise(scriptMix, totalDocs){
+    const container = document.getElementById("noise-chart");
+    const mixedPct = scriptMix.both / totalDocs * 100;
+    const otherPct = scriptMix.otherAlphabet / totalDocs * 100;
+    const cats = [
+      {label:"Кириллица + латиница", value:mixedPct, count:scriptMix.both, color:cssVar("--accent")},
+      {label:"Другие письменности", value:otherPct, count:scriptMix.otherAlphabet, color:cssVar("--name")},
+    ];
+    const W = 480, H = 240, mL = 44, mR = 10, mT = 16, mB = 34;
+    const plotW = W - mL - mR, plotH = H - mT - mB;
+    const svg = el("svg", {viewBox:"0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"Доля шумных примеров"});
+    const maxV = Math.max(niceMax(Math.max(mixedPct, otherPct) * 1.15), 5);
+    const yPix = function(v){ return mT + plotH - (v / maxV) * plotH; };
+
+    niceTicks(maxV, 4).forEach(function(t){
+      const y = yPix(t);
+      svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:y, y2:y, class:"gridline"}));
+      svg.appendChild(text({x:mL-8, y:y+3, "text-anchor":"end", "font-size":"10.5"}, fmt1(t)+"%", "axis-label mono-text"));
+    });
+    svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:H-mB, y2:H-mB, class:"baseline"}));
+
+    const band = plotW / cats.length;
+    const barW = Math.min(64, band * 0.45);
+    cats.forEach(function(c, i){
+      const cx = mL + band * i + band/2;
+      const y = yPix(c.value);
+      const g = el("g", {class:"bar-hit"});
+      g.appendChild(el("rect", {x:cx-barW/2, y:y, width:barW, height:H-mB-y, rx:4, fill:c.color, class:"bar"}));
+      g.appendChild(text({x:cx, y:y-8, "text-anchor":"middle", "font-size":"13", "font-weight":"700"}, fmt1(c.value)+"%", "value-label mono-text"));
+      g.appendChild(text({x:cx, y:H-mB+18, "text-anchor":"middle", "font-size":"12"}, c.label));
+      attachHover(g, c.label, function(){ return [["Доля", fmt1(c.value)+"%"], ["Примеров", fmt(c.count)]]; });
+      svg.appendChild(g);
+    });
+    container.appendChild(svg);
+
+    const t = document.getElementById("noise-table");
+    t.innerHTML = "<thead><tr><th>Категория</th><th>Примеров</th><th>Доля</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    [
+      ["Только кириллица", scriptMix.onlyCyrillic],
+      ["Только латиница", scriptMix.onlyLatin],
+      ["Кириллица + латиница", scriptMix.both],
+      ["Без букв", scriptMix.neither],
+      ["Есть другие письменности", scriptMix.otherAlphabet],
+    ].forEach(function(r){
+      const tr = document.createElement("tr");
+      const c1 = document.createElement("td"); c1.textContent = r[0];
+      const c2 = document.createElement("td"); c2.className = "num"; c2.textContent = fmt(r[1]);
+      const c3 = document.createElement("td"); c3.className = "num"; c3.textContent = fmt1(r[1]/totalDocs*100) + "%";
+      tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3);
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+  }
+
+  // ================= stat tiles =================
+  function renderTiles(d){
+    const host = document.getElementById("tiles");
+    host.innerHTML = "";
+    const mixedPct = d.scriptMix.both / d.totalDocs * 100;
+    const otherPct = d.scriptMix.otherAlphabet / d.totalDocs * 100;
+    const emptyPct = d.docsWithoutEntities / d.totalDocs * 100;
+    [
+      ["Документов", fmt(d.totalDocs), null],
+      ["Без сущностей", fmt(d.docsWithoutEntities), fmt1(emptyPct) + "% от документов"],
+      ["Сущностей всего", fmt(d.totalEntities), null],
+      ["Уникальных символов", fmt(d.uniqueChars), null],
+      ["Кириллица + латиница", fmt1(mixedPct) + "%", fmt(d.scriptMix.both) + " документов"],
+      ["Другие письменности", fmt1(otherPct) + "%", fmt(d.scriptMix.otherAlphabet) + " документов"],
+    ].forEach(function(r){
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      const l = document.createElement("p"); l.className = "label"; l.textContent = r[0];
+      const v = document.createElement("div"); v.className = "value"; v.textContent = r[1];
+      tile.appendChild(l); tile.appendChild(v);
+      if (r[2]){ const s = document.createElement("p"); s.className = "sub"; s.textContent = r[2]; tile.appendChild(s); }
+      host.appendChild(tile);
+    });
+  }
+
+  function renderModelStats(){
+    const rows = JSON.parse(document.getElementById("model-stats").textContent);
+    rows.sort(function(a, b){ return b.microF1 - a.microF1; });
+    const table = document.getElementById("model-table");
+    table.innerHTML = "<thead><tr><th>#</th><th>Модель</th><th>Описание</th><th>micro-F1</th><th>ORG</th><th>NAME</th><th>GEO</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    rows.forEach(function(r, i){
+      const tr = document.createElement("tr");
+      const rank = document.createElement("td"); rank.className = "rank"; rank.textContent = String(i + 1).padStart(2, "0"); tr.appendChild(rank);
+      const name = document.createElement("td"); name.innerHTML = "<span class='model-name'></span><span class='model-id'></span>"; name.querySelector(".model-name").textContent = r.model; name.querySelector(".model-id").textContent = r.modelId; tr.appendChild(name);
+      const backend = document.createElement("td"); backend.textContent = r.backend; tr.appendChild(backend);
+      const f1 = document.createElement("td"); f1.className = "f1-cell"; f1.innerHTML = "<div class='f1-value'><span></span><small></small></div><div class='f1-bar'><span></span></div>"; f1.querySelector(".f1-value span").textContent = fmtScore(r.microF1); f1.querySelector("small").textContent = "P " + fmtScore(r.precision) + " · R " + fmtScore(r.recall); f1.querySelector(".f1-bar span").style.width = (r.microF1 * 100) + "%"; tr.appendChild(f1);
+      [r.orgF1, r.nameF1, r.geoF1].forEach(function(v){ const td = document.createElement("td"); td.className = "num"; td.textContent = fmtScore(v); tr.appendChild(td); });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  // ================= augmentation comparison =================
+  function renderAugLegend(){
+    const host = document.getElementById("aug-legend");
+    LABELS.forEach(function(l){
+      const item = document.createElement("div"); item.className = "item";
+      const sw = document.createElement("span"); sw.className = "swatch"; sw.style.background = labelColor(l);
+      const lb = document.createElement("span"); lb.textContent = l + " F1";
+      item.appendChild(sw); item.appendChild(lb);
+      host.appendChild(item);
+    });
+    const item = document.createElement("div"); item.className = "item";
+    const sw = document.createElement("span"); sw.className = "swatch"; sw.style.cssText = "background:" + cssVar("--accent") + ";border-radius:50%";
+    const lb = document.createElement("span"); lb.textContent = "micro-F1 (маркер)";
+    item.appendChild(sw); item.appendChild(lb);
+    host.appendChild(item);
+  }
+
+  function renderAugChart(rows){
+    const container = document.getElementById("aug-chart");
+    const W = 680, H = 300, mL = 40, mR = 10, mT = 20, mB = 48;
+    const plotW = W - mL - mR, plotH = H - mT - mB;
+    const svg = el("svg", {viewBox: "0 0 " + W + " " + H, class:"chart", role:"img", "aria-label":"F1 по меткам для каждого шага аугментации"});
+    const yMax = 0.8;
+    const yPix = function(v){ return mT + plotH - (v / yMax) * plotH; };
+
+    [0, 0.2, 0.4, 0.6, 0.8].forEach(function(t){
+      const y = yPix(t);
+      svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:y, y2:y, class:"gridline"}));
+      svg.appendChild(text({x:mL-8, y:y+3, "text-anchor":"end", "font-size":"10.5"}, fmtScore(t), "axis-label mono-text"));
+    });
+    svg.appendChild(el("line", {x1:mL, x2:W-mR, y1:H-mB, y2:H-mB, class:"baseline"}));
+
+    const band = plotW / rows.length;
+    const barW = Math.min(16, band * 0.16);
+    const gap = barW * 0.4;
+    const keys = [["orgF1","ORG"], ["nameF1","NAME"], ["geoF1","GEO"]];
+    const clusterW = keys.length * barW + (keys.length - 1) * gap;
+
+    rows.forEach(function(r){
+      const idx = rows.indexOf(r);
+      const gcx = mL + band * idx + band / 2;
+      const startX = gcx - clusterW / 2;
+      keys.forEach(function(k, ki){
+        const v = r[k[0]];
+        const x = startX + ki * (barW + gap);
+        const y = yPix(v);
+        const g = el("g", {class:"bar-hit"});
+        g.appendChild(el("rect", {x:x, y:y, width:barW, height:H-mB-y, rx:3, fill:labelColor(k[1]), class:"bar"}));
+        attachHover(g, r.name + " · " + k[1], function(){ return [["F1", fmtScore(v)]]; });
+        svg.appendChild(g);
+      });
+
+      const my = yPix(r.microF1);
+      const marker = el("g", {class:"bar-hit"});
+      marker.appendChild(el("circle", {cx:gcx, cy:my, r:4.5, fill:cssVar("--accent"), stroke:cssVar("--surface"), "stroke-width":"1.5", class:"bar"}));
+      attachHover(marker, r.name + " · micro-F1", function(){ return [
+        ["micro-F1", fmtScore(r.microF1)], ["Precision", fmtScore(r.microPrecision)], ["Recall", fmtScore(r.microRecall)],
+      ]; });
+      svg.appendChild(marker);
+
+      svg.appendChild(text({x:gcx, y:H-mB+18, "text-anchor":"middle", "font-size":"11.5", "font-weight":"600"}, r.short));
+      svg.appendChild(text({x:gcx, y:H-mB+32, "text-anchor":"middle", "font-size":"10"}, r.note, "axis-label mono-text"));
+    });
+    container.appendChild(svg);
+
+    const t = document.getElementById("aug-chart-table");
+    t.innerHTML = "<thead><tr><th>Конфигурация</th><th>ORG F1</th><th>NAME F1</th><th>GEO F1</th><th>micro-F1</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    rows.forEach(function(r){
+      const tr = document.createElement("tr");
+      const c0 = document.createElement("td"); c0.textContent = r.name;
+      tr.appendChild(c0);
+      [r.orgF1, r.nameF1, r.geoF1, r.microF1].forEach(function(v){
+        const td = document.createElement("td"); td.className = "num"; td.textContent = fmtScore(v);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+  }
+
+  function renderAugTable(rows){
+    const baseline = rows.find(function(r){ return r.id === "baseline"; });
+    const sorted = rows.slice().sort(function(a, b){ return b.microF1 - a.microF1; });
+    const table = document.getElementById("aug-table");
+    table.innerHTML = "<thead><tr><th>#</th><th>Конфигурация</th><th>micro-F1</th><th>ORG</th><th>NAME</th><th>GEO</th><th>Δ к baseline</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    sorted.forEach(function(r, i){
+      const tr = document.createElement("tr");
+      const rank = document.createElement("td"); rank.className = "rank"; rank.textContent = String(i + 1).padStart(2, "0"); tr.appendChild(rank);
+      const name = document.createElement("td"); name.innerHTML = "<span class='model-name'></span><span class='model-id'></span>"; name.querySelector(".model-name").textContent = r.name; name.querySelector(".model-id").textContent = r.note; tr.appendChild(name);
+      const f1 = document.createElement("td"); f1.className = "f1-cell"; f1.innerHTML = "<div class='f1-value'><span></span><small></small></div><div class='f1-bar'><span></span></div>"; f1.querySelector(".f1-value span").textContent = fmtScore(r.microF1); f1.querySelector("small").textContent = "P " + fmtScore(r.microPrecision) + " · R " + fmtScore(r.microRecall); f1.querySelector(".f1-bar span").style.width = (r.microF1 * 100) + "%"; tr.appendChild(f1);
+      [r.orgF1, r.nameF1, r.geoF1].forEach(function(v){ const td = document.createElement("td"); td.className = "num"; td.textContent = fmtScore(v); tr.appendChild(td); });
+      const delta = document.createElement("td"); delta.className = "num delta";
+      if (r.id === "baseline"){
+        delta.textContent = "—";
+        delta.style.color = cssVar("--ink-muted");
+      } else {
+        const d = r.microF1 - baseline.microF1;
+        delta.textContent = (d >= 0 ? "+" : "−") + Math.abs(d).toFixed(3);
+        delta.style.color = d >= 0 ? cssVar("--org") : cssVar("--neg");
+      }
+      tr.appendChild(delta);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  function renderCascadeTable(rows){
+    const table = document.getElementById("cascade-table");
+    table.innerHTML = "<thead><tr><th>#</th><th>Схема</th><th>micro-F1</th><th>ORG</th><th>NAME</th><th>GEO</th></tr></thead>";
+    const tbody = document.createElement("tbody");
+    rows.forEach(function(r, i){
+      const tr = document.createElement("tr");
+      const rank = document.createElement("td"); rank.className = "rank"; rank.textContent = String(i + 1).padStart(2, "0"); tr.appendChild(rank);
+      const name = document.createElement("td"); name.innerHTML = "<span class='model-name'></span>"; name.querySelector(".model-name").textContent = r.name; tr.appendChild(name);
+      const f1 = document.createElement("td"); f1.className = "f1-cell"; f1.innerHTML = "<div class='f1-value'><span></span><small></small></div><div class='f1-bar'><span></span></div>"; f1.querySelector(".f1-value span").textContent = fmtScore(r.microF1); f1.querySelector("small").textContent = "P " + fmtScore(r.microPrecision) + " · R " + fmtScore(r.microRecall); f1.querySelector(".f1-bar span").style.width = (r.microF1 * 100) + "%"; tr.appendChild(f1);
+      [r.orgF1, r.nameF1, r.geoF1].forEach(function(v){ const td = document.createElement("td"); td.className = "num"; td.textContent = fmtScore(v); tr.appendChild(td); });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  // ================= orchestration =================
+  function renderAll(split){
+    const d = DATA[split];
+    hideTip();
+    clearAll();
+    document.getElementById("split-note").textContent = fmt(d.totalDocs) + " примеров";
+    renderTiles(d);
+    renderCharLegend();
+    renderCharChart(d.charFreq);
+    renderHistogram(d.textLengths);
+    renderEntityLegend();
+    renderLabelBars(d.labelCounts);
+    renderBoxplot(d.entityBox);
+    renderNoise(d.scriptMix, d.totalDocs);
+  }
+
+  document.querySelectorAll(".switcher button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".switcher button").forEach(function(b){
+        b.classList.remove("active"); b.setAttribute("aria-selected","false");
+      });
+      btn.classList.add("active"); btn.setAttribute("aria-selected","true");
+      renderAll(btn.dataset.split);
+    });
+  });
+
+  renderAll("train");
+  renderModelStats();
+
+  const augRows = JSON.parse(document.getElementById("augmentation-stats").textContent);
+  renderAugLegend();
+  renderAugChart(augRows);
+  renderAugTable(augRows);
+
+  const cascadeRows = JSON.parse(document.getElementById("cascade-stats").textContent);
+  renderCascadeTable(cascadeRows);
+})();
+</script>
+
+</body></html>

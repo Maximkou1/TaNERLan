@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TaNERlan — разметка текста</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/png" href="/static/chat-avatar.png">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="chat" aria-label="Чат разметки">
+        <header class="chat-header" aria-label="TaNERlan"></header>
+        <div id="messages" class="messages" aria-live="polite">
+          <section class="welcome" id="welcome"><div class="welcome-icon"><img src="/static/welcome-portrait.png" alt="Узбекский правитель в орнаментальной рамке"></div><h2>Что разметить?</h2><p>Я выделю имена, организации и географические названия.</p><button class="suggestion" data-text="Дмитрий Брекоткин приехал в Петербург, чтобы поступить в AI Talent Hub.">Попробовать пример →</button></section>
+        </div>
+        <form id="predict-form" class="composer"><label class="sr-only" for="text">Текст для разметки</label><textarea id="text" rows="1" placeholder="Напишите текст для разметки…" autofocus></textarea><div class="composer-footer"><span></span><button id="submit" type="submit" aria-label="Отправить текст"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18V6M7.5 10.5 12 6l4.5 4.5"/></svg></button></div></form>
+        <p id="status" class="status" role="status"></p>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

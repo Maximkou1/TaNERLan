@@ -1,0 +1,80 @@
+[project]
+name = "Taner"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Your Name" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "accelerate>=1.14.0",
+    "case-converter>=1.2.0",
+    "datasets>=5.0.1",
+    "kagglehub>=1.0.2",
+    "kostyl-toolkit[ml]>=0.2.5",
+    "lightning>=2.6.5",
+    "openpyxl>=3.1.5",
+    "protobuf>=7.36.1",
+    "pymorphy3>=2.0.6",
+    "pymorphy3-dicts-ru>=2.4.417150.4580142",
+    "requests>=2.34.2",
+    "rich-click>=1.9.8",
+    "sentencepiece>=0.2.2",
+    "torch==2.13.0",
+    "torchao>=0.18.0",
+    "transformers>=5.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "ipywidgets>=8.1.9",
+    "tensorboard>=2.21.0",
+]
+infer = [
+    "litserve>=0.2.5",
+    "onnxruntime-gpu>=1.29",
+    "openvino>=2025.1",
+]
+flash = ["flash-attn; python_version == '3.13' and sys_platform == 'linux'"]
+export = [
+    "onnx>=1.17",
+    "onnxscript>=0.3",
+]
+
+[tool.ty.environment]
+python = ".venv"
+python-version = "3.13"
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu130", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+flash-attn = { url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.47/flash_attn-2.8.3%2Bcu130torch2.13-cp313-cp313-linux_x86_64.whl", marker = "sys_platform == 'linux' and python_version == '3.13'" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.ty.rules]
+blanket-ignore-comment = "error"
+missing-type-argument = "error"
+missing-override-decorator = "error"
+possibly-unresolved-reference = "warn"
+
+
+[tool.ruff.lint]
+exclude = [
+    ".venv",
+    "build",
+    "dist",
+    "__pycache__",
+    "migrations",
+    "notebooks",
+]
+ignore = [
+    "I001",  # isort found an import in the wrong position
+    "PLR1711",
+]

@@ -1,0 +1,98 @@
+experiment_name: NERModernBertUZNewDecoder
+
+model:
+  name_or_path: pomelk1n/modern-bert-uz
+  head:
+    # type: bio | span (см. configs/ner-mmbert-span.yaml)
+    type: bio
+    loss:
+      type: focal # ce | focal; label_smoothing только для ce
+      focal_gamma: 2.0
+  # любые поля ModernBertConfig, уезжают в from_pretrained(**kwargs)
+  from_pretrained_kwargs:
+    classifier_dropout: 0.1
+    attention_dropout: 0.0
+    mlp_dropout: 0.12
+    embedding_dropout: 0.0
+
+data:
+  train_path: /workspace/uzbeki/data/train.jsonl
+  val_path: /workspace/uzbeki/data/dev.jsonl
+  tokenizer_name_or_path: pomelk1n/modern-bert-uz
+  batch_size: 4
+  num_workers: 8
+  seed: 2026
+  pad_to_multiple_of: 8
+  augmentation:
+    # транслитерация куска текста: кириллица -> латиница и обратно (public: 40% кириллицы против 30% в train)
+    cyr2lat_prob: 0.3 # пример с кириллицей: кусок -> латиница
+    lat2cyr_prob: 0.3 # иначе пример с латиницей: кусок -> кириллица
+    full_text_prob: 0.3 # весь текст, иначе случайный кусок
+    min_chunk_words: 3
+    max_chunk_fraction: 1.0 # верхняя граница длины куска как доля слов текста
+    # регистр всего текста; на dev: капс +5 F1 на срезе капса, lower даёт recall на строчных ценой precision,
+    # поэтому маленький; entity_* только вредили (ModernBERT A/B: -0.4 общий, -1.7 на строчных и капсе)
+    lower_prob: 0.05
+    upper_prob: 0.07
+    entity_lower_prob: 0.0
+    entity_upper_prob: 0.0
+    # замена упоминаний из внешних корпусов по языку документа (uz/ru/en) и письменности оригинала;
+    # пул собирает data/build_mention_pool.py (Mendeley Gold, Kaggle, WikiANN uz, WikiNEuRal ru/en)
+    mention_replace_prob: 0.3
+    mention_max_per_doc: 2
+    mention_long_bias: 1.5 # вес кандидата = число_слов ** bias
+    mention_long_bias_by_label:
+      ORG: 2.5 # recall на ORG из 3+ слов 0.81 против 0.91 на коротких — тянем длинные замены
+    mention_max_extra_words: 4
+    mention_min_count: 1 # для пула из train; внешний jsonl уже отфильтрован при сборке
+    mention_min_type_purity: 0.9
+    mention_pool_path: /workspace/uzbeki/data/mention_pool.jsonl
+    mention_pool_transliterate: true # только для пула из train/tsv: копии основ в другой письменности
+
+hyperparams:
+  grad_clip_val: 1.0
+  layer_lr_decay: 0.95
+
+  optimizer:
+    type: AdamW
+    betas: [ 0.9, 0.999 ]
+
+  weight_decay:
+    base_value: 0.05
+
+  backbone_lr:
+    scheduler_type: cosine
+    warmup_ratio: 0.05
+    warmup_value: 1e-6
+    base_value: 3e-5
+    final_value: 1e-6
+
+  head_lr:
+    scheduler_type: cosine
+    warmup_ratio: 0.05
+    warmup_value: 1e-6
+    base_value: 1.5e-4
+    final_value: 5e-6
+
+trainer:
+  accelerator: "cuda"
+  devices: [ 0, 1 ]
+  max_epochs: 10
+  strategy:
+    type: "ddp"
+  val_check_interval: 1.0
+  precision: bf16-mixed
+  accumulate_grad_batches: 5
+  log_every_n_steps: 10
+
+early_stopping:
+  monitor: "val_micro_f1"
+  mode: "max"
+  patience: 4
+  min_delta: 0.003
+
+checkpointing:
+  save_top_k: 2
+  mode: "max"
+  monitor: "val_micro_f1"
+  filename: "|{epoch}|-|{step}|-|{val_micro_f1:.4f}|"
