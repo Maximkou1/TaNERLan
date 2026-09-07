@@ -1,9 +1,0 @@
-{
-  "models": [
-    {"name":"bertbek-ner-uznews","model_id":"elmurod1202/bertbek-ner-uznews","backend":"token-classification","label_map":{"PER":"NAME","PERSON":"NAME","ORG":"ORG","LOC":"GEO","LOCATION":"GEO"}},
-    {"name":"gliner-multi-v2.1","model_id":"urchade/gliner_multi-v2.1","backend":"gliner","labels":["person","organization","location"],"label_map":{"person":"NAME","organization":"ORG","location":"GEO"}},
-    {"name":"gliner2.5-multi-v1","model_id":"fastino/gliner2.5-multi-v1","backend":"gliner2.5","labels":["person","organization","location"],"label_map":{"person":"NAME","organization":"ORG","location":"GEO"}},
-    {"name":"xlm-roberta-base-ner-hrl","model_id":"Davlan/xlm-roberta-base-ner-hrl","backend":"token-classification","label_map":{"PER":"NAME","PERSON":"NAME","ORG":"ORG","LOC":"GEO","LOCATION":"GEO"}},
-    {"name":"gliner2-multi-v1","model_id":"fastino/gliner2-multi-v1","backend":"gliner2","labels":["person","organization","location"],"label_map":{"person":"NAME","organization":"ORG","location":"GEO"}}
-  ]
-}

@@ -1,178 +1,122 @@
-# Uzbek NER
+# TaNERLan
 
-## Задача
+Named entity recognition for Uzbek text (Latin and Cyrillic script, including
+mixed-script and code-switched documents). Extracts three entity types with
+exact character-span boundaries:
 
-Нужно найти в тексте именованные сущности, определить их точные границы и
-отнести каждую сущность к одному из трёх классов:
+| Label  | Meaning                                                    |
+|--------|-------------------------------------------------------------|
+| `ORG`  | organizations, companies, brands, media, agencies, clubs   |
+| `NAME` | person names and unambiguous aliases                        |
+| `GEO`  | countries, regions, cities, districts, named places          |
 
-- `ORG` — организации и бренды;
-- `NAME` — люди;
-- `GEO` — географические объекты.
+Metric: exact-span micro-F1 — an entity counts only if label, `start`, and
+`end` all match the gold annotation exactly.
 
-Подробные правила классов и определения точных границ приведены в
-[`LABELING_GUIDE.md`](LABELING_GUIDE.md).
+## Two model approaches
 
-## Состав комплекта
+1. **Encoder ensemble** (`tanerlan/modern_bert/`) — token-classification
+   (BIO + Viterbi decoding) or span-classification (biaffine/CNN scoring)
+   heads on top of a pretrained encoder (mmBERT-base, or ModernBERT after
+   domain-adapted MLM pretraining with a retrained tokenizer). Multiple
+   fine-tuned checkpoints can be ensembled at inference time.
+2. **LLM prompting** (`tanerlan/llm/`) — zero-shot extraction via an
+   OpenAI-compatible chat endpoint (tested against vLLM). The prompt encodes
+   the dataset's boundary conventions (case-suffix inclusion, administrative/
+   institutional tail words, apostrophe normalization) as explicit rules;
+   the model returns surface strings, and `align_surfaces` locates their
+   exact character spans in the source text (an LLM cannot reliably count
+   characters, so it is never asked for offsets directly).
 
-- `data/train.jsonl` — обучающая выборка с разметкой;
-- `data/dev.jsonl` — валидационная выборка с разметкой;
-- `data/dataset_manifest.json` — схема, статистика и SHA-256 файлов;
-- `LABELING_GUIDE.md` — описание классов, границ и пограничных случаев;
-- `baseline/` — минимальный baseline обучения и инференса;
-- `scripts/evaluate.py` — оценка файла предсказаний;
-- `scripts/check_service.py` — проверка совместимости HTTP-сервиса;
-- `scripts/evaluate_service.py` — прогон HTTP-сервиса и расчёт метрик;
-- `API.md` — обязательный контракт HTTP API и Docker-контейнера;
-- `requirements.txt` — зависимости baseline.
+## Repository layout
 
-## Формат данных
+```
+baseline/                 minimal token-classification baseline (train/predict)
+evaluation/                exact-span micro-F1 scorer, shared by both approaches
+tanerlan/
+  modern_bert/
+    mlm/                    domain-adaptive masked-LM pretraining
+    ner/                    NER fine-tuning: data pipeline, BIO/span heads,
+                             decoders, training loop, ensemble inference,
+                             ONNX/OpenVINO export
+    tokenizer/              custom tokenizer + Uzbek text normalization
+  llm/                      prompt-tuned LLM-as-NER harness
+  serving/                  HTTP service (LitServe) implementing the API below
+augmentation/transliteration.py   Cyrillic<->Latin transliteration
+                                  (imported by tanerlan/modern_bert/ner/data)
+configs/                  training configs (yaml) for each model variant
+data/
+  train.jsonl / dev.jsonl  labeled Uzbek NER data
+  mention_pool.jsonl       entity-replacement pool used by NER augmentation
+```
 
-Каждая строка `data/train.jsonl` и `data/dev.jsonl` — отдельный JSON-объект:
+## Data format
+
+One JSON object per line:
 
 ```json
-{"hash":"example-001","text":"Ali Toshkent shahrida ishlaydi.","entities":[{"label":"NAME","start":0,"end":3},{"label":"GEO","start":4,"end":12}]}
+{"hash": "...", "text": "...", "entities": [{"label": "GEO", "start": 0, "end": 8}]}
 ```
 
-Поля записи:
+## Training
 
-- `hash` — уникальный идентификатор текста;
-- `text` — текст, относительно которого заданы координаты;
-- `entities` — список сущностей. Если сущностей нет, список пустой.
-
-Поля сущности:
-
-- `label` — один из классов `ORG`, `NAME`, `GEO`;
-- `start` — индекс первого символа сущности, начиная с нуля;
-- `end` — индекс первого символа после сущности.
-
-`end` не входит в интервал. Для каждой сущности выполняется:
-
-```python
-mention = text[start:end]
-```
-
-Координаты считаются по символам Unicode, как индексы строки Python, а не по
-байтам.
-
-## Baseline
-
-Baseline — минимальная стартовая точка для модельного эксперимента, а не
-полностью готовое итоговое решение. Его можно изменять или заменять. Для
-выполнения всех требований кейса команда должна дополнительно обеспечить
-воспроизводимость своего эксперимента и реализовать сервис по контракту из
-[`API.md`](API.md).
-
-Команды выполняются из корня каталога с данными. Требуется Python 3.10 или новее.
-
-Установить зависимости:
+Baseline:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m baseline.train --train data/train.jsonl --dev data/dev.jsonl --output-dir artifacts/baseline
+python -m baseline.predict --model-dir artifacts/baseline/model --input data/dev.jsonl --output artifacts/baseline/dev_predictions.jsonl
 ```
 
-Референсное окружение baseline использует PyTorch 2.6.0 для CUDA 12.4.
-Команда может заменить эту сборку на совместимую со своим окружением и решением.
-
-Обучить модель:
+Encoder ensemble member (mmBERT-base, BIO head by default; see
+`configs/ner-mmbert-span.yaml` for the span head, `configs/ner-modern-bert-uz.yaml`
+for ModernBERT):
 
 ```bash
-python -m baseline.train \
-  --train data/train.jsonl \
-  --dev data/dev.jsonl \
-  --output-dir artifacts/baseline
+export PYTHONPATH=$(pwd)
+python -m tanerlan.modern_bert.ner.data.build_mention_pool --output data/mention_pool.jsonl
+python tanerlan/modern_bert/ner/train.py -c configs/ner-mmbert.yaml -e artifacts/experiments
+
+python tanerlan/modern_bert/ner/predict.py \
+    --test-path data/dev.jsonl \
+    --model-dir artifacts/experiments/<experiment>/<run>/hf_model \
+    --model-dir artifacts/experiments/<other-experiment>/<run>/hf_model \
+    --output artifacts/predictions/dev.jsonl
 ```
 
-Получить предсказания на `dev`:
+LLM prompting:
 
 ```bash
-python -m baseline.predict \
-  --model-dir artifacts/baseline/model \
-  --input data/dev.jsonl \
-  --output artifacts/baseline/dev_predictions.jsonl
+python -m tanerlan.llm.run_api --url <vllm-endpoint> --model <model-id> \
+    --input data/dev.jsonl --output artifacts/llm/dev_predictions.jsonl
 ```
 
-Скрипт автоматически использует CUDA, если она доступна, иначе — CPU. Полный
-список параметров доступен через `--help`.
-
-## Воспроизводимость решения
-
-Материалы команды должны позволять повторить обучение и проверку результата
-без скрытых ручных шагов. Необходимо предоставить:
-
-- зафиксированные зависимости и описание окружения;
-- точную версию предоставленных и дополнительных обучающих данных;
-- конфигурацию, гиперпараметры и random seed итогового эксперимента;
-- документированные команды подготовки данных, обучения, предикта и оценки;
-- итоговую обученную модель, предсказания на `dev` и заявленные метрики.
-
-Если использовались внешние или синтетические данные, команда должна сохранить
-их итоговую подготовленную версию либо предоставить воспроизводимый способ их
-получения и указать источники.
-
-Повторный инференс предоставленной итоговой модели должен воспроизводить
-заявленные метрики на `dev`. Повторное обучение должно давать сопоставимый
-результат.
-
-## Формат предсказаний
-
-Каждая строка файла предсказаний содержит `hash` исходной записи и найденные
-сущности:
-
-```json
-{"hash":"example-001","entities":[{"label":"NAME","start":0,"end":3},{"label":"GEO","start":4,"end":12}]}
-```
-
-Файл должен содержать ровно одну запись для каждого `hash` оцениваемой выборки.
-Порядок записей и сущностей значения не имеет.
-
-## Метрики
-
-Запустить оценку на `dev`:
+Evaluation (either approach, same metric):
 
 ```bash
-python scripts/evaluate.py \
-  --gold data/dev.jsonl \
-  --predictions artifacts/baseline/dev_predictions.jsonl \
-  --output artifacts/baseline/dev_metrics.json
+python -m evaluation.evaluate_model --gold data/dev.jsonl --predictions <predictions.jsonl>
 ```
 
-Сущность засчитывается только при точном совпадении `hash`, `label`, `start` и
-`end` с эталоном. Скрипт выводит Precision, Recall и F1 для каждого класса, а
-также micro- и macro-усреднение.
-
-Итоговая оценка решений проводится на закрытой тестовой выборке.
-
-## Инференс-сервис
-
-Итоговое решение должно предоставлять `POST /api/v1/predict` и лёгкий
-`GET /healthz`, запускаться в Docker и возвращать сущности в том же формате
-exact spans, который используется в файле предсказаний.
-
-Полный формат запросов, ответов и правила запуска контейнера приведены в
-[`API.md`](API.md). CLI из каталога `baseline/` является примером модельного
-инференса и не реализует HTTP-сервис за участника.
-
-После запуска своего сервиса проверить совместимость можно командой:
+## Service
 
 ```bash
-python scripts/check_service.py --url http://localhost:8000
+docker build -t ner-uz-solution .
+docker run --rm --gpus all -p 8000:8000 -v "$PWD/models:/app/models:ro" ner-uz-solution   # GPU
+docker run --rm -p 8000:8000 -v "$PWD/models:/app/models:ro" ner-uz-solution              # CPU, slow
 ```
 
-Проверяющий скрипт ждёт готовности `/healthz`, отправляет батч текстов в
-`/api/v1/predict` и валидирует обязательные поля, классы и символьные
-координаты. Качество предсказаний этой командой не оценивается.
+Model weights are not committed to this repository; mount a directory of one
+or more HF checkpoints (or an `export_to_onnx.py` export) at `/app/models`.
+Every subdirectory containing a `config.json` is loaded and ensembled
+(alphabetical order); see `tanerlan/modern_bert/ner/predict.py`. The
+container never downloads anything at runtime (`HF_HUB_OFFLINE=1`).
 
-Чтобы прогнать всю валидационную выборку через работающий сервис и рассчитать
-метрики, используется команда:
+**API contract** — `GET /healthz` returns `{"status": "ok"}`; `POST /api/v1/predict`
+accepts a batch of `{"hash": "...", "text": "..."}` objects and returns, for
+each, `{"hash": "...", "entities": [{"label": "GEO", "start": 0, "end": 8}]}`
+in the same order.
 
-```bash
-python scripts/evaluate_service.py \
-  --url http://localhost:8000 \
-  --gold data/dev.jsonl \
-  --predictions artifacts/service/dev_predictions.jsonl \
-  --output artifacts/service/dev_metrics.json
-```
+## Environment
 
-Скрипт отправляет сервису только `hash` и `text`, проверяет каждый ответ,
-сохраняет предсказания и рассчитывает метрики тем же exact-span scorer. Размер
-HTTP-батча можно изменить параметром `--batch-size`.
+Dependencies are pinned in `pyproject.toml` / `uv.lock` (managed with
+[uv](https://docs.astral.sh/uv/)): `uv sync`. See `.env.example` for the
+LLM-serving configuration variables (vLLM image/model, API key, rule set).
